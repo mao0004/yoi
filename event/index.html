@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<meta charset="utf-8">
+<title>EVENT｜YOI</title>
+<link href="../css/reset.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+
+<!-- Googleフォント（Zen Kaku Gothic NewとCaveat） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ビューポート -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--jQuery本体-->
+<script src="../js/jquery-1.11.2.min.js"></script>
+
+<!--ready関数-->
+<script>
+$(function(){
+
+});
+</script>
+
+</head>
+
+<body>
+<!-- 下層ページ→ヘッダー -->
+<header>
+  <a href="../index.html"><img class="he-logo" src="../img/fv-YOIlogo.png" alt="YOIロゴ" width="100" height="auto"></a>  
+  
+  <nav class="header__nav">
+    <ul>
+      <a class="nav_btn" href="../concept/index.html"><li>Concept</li></a>
+      <a class="nav_btn" href="../drink/index.html"><li>Drink</li></a>
+      <a class="nav_btn" href="../food/index.html"><li>Food</li></a>
+      <a class="nav_btn" href="../faq/index.html"><li>FAQ</li></a>
+      <a class="nav_btn" href="../access/index.html"><li>Access</li></a>
+    </ul>
+  </nav>
+
+  <!-- ✅ ハンバーガーアイコン（SPで表示） -->
+<button class="nav-toggle" aria-label="メニュー">
+  <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--mid"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--bot"></span>
+</button>
+
+
+ <!-- ✅ スマホ用メニュー -->
+  <nav class="nav-menu">
+    <a href="../concept/index.html" class="nav_btn">Concept</a>
+    <a href="../drink/index.html" class="nav_btn">Drink</a>
+    <a href="../food/index.html" class="nav_btn">Food</a>
+    <a href="../faq/index.html" class="nav_btn">FAQ</a>
+    <a href="../access/index.html" class="nav_btn">Access</a>
+  </nav>
+</header>
+
+<main class="event">
+<!-- イベント→ファーストビュー -->
+<section class="first">
+    <div class="w1000">
+        <h2>Event</h2>
+        <p class="sub">夜も、遊べる</p>
+    </div>
+</section>
+
+<!-- イベント→クリスマス -->
+<section class="xmas" id="dr_xmas">
+    <div class="w1200">
+
+    <!-- 飾りアイコン（画像） -->
+    <img src="../img/ev_cn_gz1.png" alt="" class="xmas-icon xmas-icon--left">
+    <img src="../img/ev_cn_gz2.png" alt="" class="xmas-icon xmas-icon--right">
+
+    <!-- きらきら星（CSSで作る） -->
+    <div class="xmas-stars">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+        <h2>ChristmasNight</h2>
+        <p class="sub">期間限定！クリスマスイベント</p>
+
+        <p class="xmas-lead">
+      <span class="red">赤</span>か<span class="green">緑</span>の服で来店で<br>
+      プチケーキ or クリスマス限定サワーをプレゼント！
+    </p>
+
+        <!-- メイン枠 -->
+    <div class="xmas-box">
+      <div class="xmas-date">
+        <span>11/18〜<br>12/25</span>
+      </div>
+
+      <div class="xmas-menu">
+        <figure class="xmas-item">
+        <p>ホーリー・メロンサワー</p>
+          <img src="../img/ev_cn_gs.png" alt="クリスマス限定サワー">
+        </figure>
+
+        <figure class="xmas-item">
+        <p>ベリーチーズケーキ</p>
+          <img src="../img/ev_cn_ck.png" alt="ベリーチーズケーキ">
+        </figure>
+      </div>
+    </div>
+
+    </div>
+</section>
+
+<!-- イベント→ガチャガチャ -->
+<section class="ev_gn" id="dr_gatya">
+  <div class="w1200">
+
+
+  <img src="../img/to_kirakira1.png" class="kira1" alt="" width="149" height="95">
+  <img src="../img/to_kirakira2.png" class="kira2" alt="" width="90" height="98">
+
+  
+
+      <!-- 見出しブロックをまとめる -->
+   
+        <h2>GachaNight</h2>
+        <p class="sub">運試しガチャイベント</p>
+
+
+    <!-- ↓ここから下は今まで通り（ガチャの内容） -->
+
+    <!-- 1段目：画像左 / テキスト右 -->
+    <div class="ev_gn_row">
+      <div class="ev_gn_imgWrap">
+        <span class="ev_gn_badge">毎日開催！</span>
+        <img src="../img/ev_gn_gc1.png" alt="ガチャマシン">
+      </div>
+
+      <div class="ev_gn_text">
+        <p class="ev_gn_km">今日の運勢、ガチャにお任せ！</p>
+        <p class="ev_gn_hb">
+          カウンターに並ぶカラフルなカプセルたち<br>
+          どれが出るかはお楽しみ♪<br>
+          “Cheers!”のネオンが光る店内で、<br>
+          小さなドキドキを体験してみて
+        </p>
+      </div>
+    </div>
+
+    <!-- 2段目：PCでは文章左 / 画像右 -->
+    <div class="ev_gn_row ev_gn_row--reverse">
+      <div class="ev_gn_text">
+        <p class="ev_gn_km">YOI限定ステッカーをゲット！</p>
+        <p class="ev_gn_hb">
+          ガチャの中には、ここでしか手に入らない<br>
+          限定ステッカーやミニアイテムが♪<br>
+          仲間とシェアして、夜をもっと楽しく<br>
+          何が出るかは、あなた次第！
+        </p>
+      </div>
+
+      <div class="ev_gn_imgWrap">
+        <img src="../img/ev_gn_gc2.png" alt="カプセルとステッカー">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- イベント→試飲会 -->
+<section class="ev_sk_hk" id="dr_shi">
+    <div class="w1200">
+
+<!-- TastingNight -->
+<h2>TastingNight</h2>
+<p class="sub">お試し交流会</p>
+
+
+
+<!-- カード全体のラッパ -->
+<div class="taste-cards">
+<p class="taste-badge">毎月<br>第３金曜日</p>
+  <!-- 左のカード -->
+  <article class="taste-card">
+    <figure class="taste-card-img">
+      <img src="../img/ev_tn_1.png" alt="乾杯の様子">
+    </figure>
+
+    <div class="taste-card-body">
+      <p class="taste-card-title">今夜を良い夜にCheers！</p>
+      <p class="taste-card-text">
+        気になっていたお酒を気軽に試せる<br>
+        ゆるっと楽しい<br>テイスティングイベント<br>
+        初めて会う人とも好きなお酒の話で<br>
+        いつの間にか<br>盛り上がっちゃう夜です
+      </p>
+    </div>
+  </article>
+
+  <!-- 右のカード -->
+  <article class="taste-card">
+    <figure class="taste-card-img">
+      <img src="../img/ev_tn_2.png" alt="ボトル写真">
+    </figure>
+
+    <div class="taste-card-body">
+      <p class="taste-card-title">可愛いボトルでHappy！</p>
+      <p class="taste-card-text">
+        見た目も味もかわいい<br>YOI限定ドリンク<br>
+        フルーツサワーが苦手な人でも<br>試しやすいから<br>
+        お気に入りの1本を見つけたら<br>
+        そのままその夜の一杯にどうぞ
+      </p>
+    </div>
+  </article>
+
+</div><!-- /.taste-cards -->
+
+</section>
+
+
+
+<!-- 下層ページ→ナビ -->
+<section class="sa_mt">
+    <div class="w1200">
+        <h2 class="jap">さあ、あなたの“良い夜”を見つけに</h2>
+<div>
+<a href="../access/index.html" class="btn">お店を探す
+<span class="btn-icon">→</span>
+</a>
+
+<a href="../faq/index.html" class="btn">よくあるご質問
+<span class="btn-icon">→</span>
+</a>
+</div>
+    </div>
+</section>
+</main>
+
+
+
+<!-- 下層ページ→フッター -->
+<footer>
+    <nav>
+        <ul>
+            <a href="../concept/index.html"><li>Concept</li></a>
+            <a href="../food/index.html"><li>Food</li></a>
+            <a href="../drink/index.html"><li>Drink</li></a>
+            <a href="../event/index.html"><li>Event</li></a>
+            <a href="../access/index.html"><li>Access</li></a>
+            <a href="../faq/index.html"><li>FAQ</li></a>
+        </ul>
+    </nav>
+    <div>
+        <a href="../index.html"><img src="../img/to_footer_logo.png" alt="YOIのロゴ" width="153" height="112"></a>
+    </div>
+    <p>🄫2025YOI</p>
+    <div class="sns">
+        <a href="#"><img src="../img/to_footer_insta.png" alt="Instagramのロゴ" width="41" height="41"></a>
+        <a href="#"><img src="../img/to_footer_tiktok.png" alt="TikTokのロゴ" width="65" height="65"></a>
+    </div>
+</footer>
+
+<!-- ハンバーガー-->
+<script src="../js/hamburger.js"></script>
+</body>
+
+</html>

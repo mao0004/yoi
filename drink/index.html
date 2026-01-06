@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<meta charset="utf-8">
+<title>DRINK｜YOI</title>
+<link href="../css/reset.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+
+<!-- Googleフォント（Zen Kaku Gothic NewとCaveat） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ビューポート -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--jQuery本体-->
+<script src="../js/jquery-1.11.2.min.js"></script>
+
+<!--ready関数-->
+<script>
+$(function(){
+
+});
+</script>
+
+</head>
+
+<body>
+<!-- 下層ページ→ヘッダー -->
+<header>
+  <a href="../index.html"><img class="he-logo" src="../img/fv-YOIlogo.png" alt="YOIロゴ" width="100" height="auto"></a>  
+  
+  <nav class="header__nav">
+    <ul>
+      <a class="nav_btn" href="../concept/index.html"><li>Concept</li></a>
+      <a class="nav_btn" href="../drink/index.html"><li>Drink</li></a>
+      <a class="nav_btn" href="../food/index.html"><li>Food</li></a>
+      <a class="nav_btn" href="../faq/index.html"><li>FAQ</li></a>
+      <a class="nav_btn" href="../access/index.html"><li>Access</li></a>
+    </ul>
+  </nav>
+
+  <!-- ✅ ハンバーガーアイコン（SPで表示） -->
+<button class="nav-toggle" aria-label="メニュー">
+  <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--mid"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--bot"></span>
+</button>
+
+
+ <!-- ✅ スマホ用メニュー -->
+  <nav class="nav-menu">
+    <a href="../concept/index.html" class="nav_btn">Concept</a>
+    <a href="../drink/index.html" class="nav_btn">Drink</a>
+    <a href="../food/index.html" class="nav_btn">Food</a>
+    <a href="../faq/index.html" class="nav_btn">FAQ</a>
+    <a href="../access/index.html" class="nav_btn">Access</a>
+  </nav>
+</header>
+
+<main class="drink">
+<!-- ドリンク→ファーストビュー -->
+<section class="first">
+    <div class="w1000">
+        <h2>Drink</h2>
+        <p class="sub">気分で選べて、楽しめる</p>
+    </div>
+</section>
+
+<!-- ドリンク→缶 -->
+<section class="can">
+<div class="w1200">
+        <h2>- Can -</h2>
+</div>
+
+
+      <!-- グリッド3列：［←］［スライダー本体］［→］ -->
+  <div class="carousel">
+   
+
+    <div class="track" role="region" aria-label="缶一覧">
+      <button class="nav prev" aria-label="前へ" type="button">‹</button>
+   
+
+  <div class="viewport">
+    <div class="track">
+      <article class="card">
+        <span class="card__badge">CHERRY<br>SOUR</span>
+        <img class="card__img" src="../img/dr_cn_cs.png" alt="チェリーサワーの缶">
+        <p class="card__text">
+          チェリーの甘酸っぱさと<br>やわらかな泡が<br>
+          口いっぱいに広がります
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★☆☆☆</span></div>
+        </div>
+      </article>
+
+
+    
+     <div>
+        <article class="card">
+        <span class="card__badge">STRAWBERRY<br>SOUR</span>
+        <img class="card__img" src="../img/dr_cn_sb.png" alt="ストロベリーサワーの缶">
+        <p class="card__text">
+          いちごのほのかな酸味が<br>ふんわり広がる<br>
+          可愛さに思わず笑顔になる1本
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★★★</span></div>
+          <div><span>すっきり</span><span class="star">★☆☆☆☆</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div>
+        <article class="card">
+        <span class="card__badge">BLUE<br>HAWAII</span>
+        <img class="card__img" src="../img/dr_cn_bh.png" alt="ブルーハワイの缶">
+        <p class="card__text">
+          ラムネのような爽快感と<br>夏の海を思わせる<br>
+          透明感のある味わい
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★★☆☆</span></div>
+        </div>
+      </article>
+    </div>
+
+        <div>
+        <article class="card">
+        <span class="card__badge">LEMON<br>SOUR</span>
+        <img class="card__img" src="../img/dr_cn_lm.png" alt="レモンサワーの缶">
+        <p class="card__text">
+          キリッとした酸味が<br>クセになる定番サワー<br>
+          飲むほどにリフレッシュ
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★★☆☆</span></div>
+        </div>
+      </article>
+    </div>
+
+        <div>
+        <article class="card">
+        <span class="card__badge">PEACH<br>SOUR</span>
+        <img class="card__img" src="../img/dr_cn_pc.png" alt="ピーチサワーの缶">
+        <p class="card__text">
+          白桃のジューシーな甘みと<br>香りがふわっと広がる<br>
+          初めての人にもおすすめ
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★★☆☆</span></div>
+        </div>
+      </article>
+    </div>
+
+    
+      </div>
+  </div>
+    <button class="nav next" aria-label="次へ" type="button">›</button>
+  </div>
+</div>
+
+
+    <div class="w1200">
+        <h2>- Bottle -</h2>
+    </div>
+
+ <div class="carousel">
+
+
+    <div class="track" role="region" aria-label="ボトル一覧">
+      <button class="nav prev" aria-label="前へ" type="button">‹</button>
+   
+    <div class="viewport">
+    <div class="track">
+     <div>
+        <article class="card">
+        <span class="card__badge">YOI<br>BEER</span>
+        <img class="card__img" src="../img/dr_cn_br.png" alt="ビールの瓶">
+        <p class="card__text">
+          ごくごく飲める<br>はじけるシトラスビール<br>甘さ控えめで後味さっぱり<br>
+          
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★☆☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★☆☆☆</span></div>
+        </div>
+      </article>
+    </div>
+    
+     <div>
+        <article class="card">
+        <span class="card__badge">CITRUS<br>ZEST</span>
+        <img class="card__img" src="../img/dr_bt_cz.png" alt="シトラスゼストの瓶">
+        <p class="card__text">
+          すっきりとしたレモンと<br>グレープフルーツの<br>
+          香りはじける爽快な味わい
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★☆☆☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★★★★</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div>
+        <article class="card">
+        <span class="card__badge">UME<br>BLOSSOM</span>
+        <img class="card__img" src="../img/dr_bt_um.png" alt="梅酒の瓶">
+        <p class="card__text">
+          ふんわり梅の香りと<br>お花見のような<br>
+          ほっとする華やかさを感じる1本
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★★☆</span></div>
+          <div><span>すっきり</span><span class="star">★★☆☆☆</span></div>
+        </div>
+      </article>
+    </div>
+
+    
+    <div>
+        <article class="card">
+        <span class="card__badge">OCEAN<br>ZEST</span>
+        <img class="card__img" src="../img/dr_bt_om.png" alt="オーシャンミストの瓶">
+        <p class="card__text">
+          南国の海を思わせる<br>やわらかな甘さと<br>トロピカルな香り<br>
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★★☆</span></div>
+          <div><span>すっきり</span><span class="star">★★☆☆☆</span></div>
+        </div>
+      </article>
+ 
+    </div>
+
+    
+    <div>
+        <article class="card">
+        <span class="card__badge">TROPICAL<br>GLOW</span>
+        <img class="card__img" src="../img/dr_bt_tp.png" alt="トロピカルグロウの瓶">
+        <p class="card__text">
+          たくさんのフルーツの<br>味わいと香り<br>
+          リゾート気分になれる1本
+        </p>
+        <div class="card__meta">
+          <div><span>甘み</span><span class="star">★★★★☆</span></div>
+          <div><span>すっきり</span><span class="star">★★☆☆☆</span></div>
+        </div>
+      </article>
+ 
+    </div>
+    </div>
+      </div>
+     <button class="nav next" aria-label="次へ" type="button">›</button>
+ </div>
+</div>
+</section>
+
+
+
+<!-- ドリンク→フレーバーマップ -->
+<section id="flavor" class="flavor">
+        <img src="../img/dr_fm_mk1.png" alt="もこもこ上" class="moko-top">
+
+    <div class="w1200">
+        <h2>FlaverMap</h2>
+        <p class="sub">あなたにぴったりなお酒がみつかる！</p>
+    </div>
+    
+    <div class="fm-wrap">
+    <!-- 背景（4枚目）をいちばん下に、上に2枚目を重ねる -->
+    <img class="fm-bg grid"  src="../img/dr_fm_mp.png"  alt="マップ">
+
+    <!-- ピンを乗せるステージ -->
+    <div class="fm-stage" aria-label="フレーバーマップ">
+
+      <!-- 商品ピン（位置は％で。画像とIDだけ入れる） -->
+      <button class="fm-item" style="--x:68.5%;--y:20.5%" data-id="peach" aria-label="PEACH">
+        <img src="../img/dr_fm_pc.png" alt="PEACH SOUR">
+      </button>
+
+      <button class="fm-item" style="--x:75%;--y:45%" data-id="strawberry" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_sb.png" alt="STRAWBERRY SOUR">
+      </button>
+
+      <button class="fm-item" style="--x:49%;--y:49%" data-id="blue" aria-label="BLUE HAWAII">
+        <img src="../img/dr_fm_bh.png" alt="BLUE HAWAII">
+      </button>
+
+
+      <button class="fm-item" style="--x:22.5%;--y:40%" data-id="lemon" aria-label="LEMON SOUR">
+        <img src="../img/de_fm_lm.png" alt="LEMON SOUR">
+      </button>
+
+      <button class="fm-item" style="--x:71.5%;--y:70%" data-id="Cherry" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_cs.png" alt="CHERRY SOUR">
+      </button>
+
+      <button class="fm-item" style="--x:81%;--y:69.5%" data-id="Ume" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_um.png" alt="UME">
+      </button>
+
+      <button class="fm-item" style="--x:58%;--y:49%" data-id="Beer" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_yb.png" alt="BEER">
+      </button>
+
+      <button class="fm-item" style="--x:32%;--y:40%" data-id="Citrus" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_cz.png" alt="CITRUS ZEST">
+      </button>
+
+      <button class="fm-item" style="--x:34%;--y:68%" data-id="Ocean" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_om.png" alt="OCEAN MIST">
+      </button>
+
+      <button class="fm-item" style="--x:47%;--y:25%" data-id="Tropical" aria-label="STRAWBERRY">
+        <img src="../img/dr_fm_tp.png" alt="TROPICAL GLOW">
+      </button>
+
+  <span class="fm-label" style="--x:50.5%; --y:8%;">やさしい（度数弱め）</span>
+  <span class="fm-label" style="--x:92%; --y:47%;">甘い</span>
+  <span class="fm-label" style="--x:50.5%; --y:83.5%;">しっかり（度数強め）</span>
+  <span class="fm-label" style="--x:9%; --y:47%;">爽やか</span>
+
+</div>
+
+    <!-- 追加したい分だけコピペ（--x, --y を変えるだけ） -->
+    </div>
+  </div>
+    <div class="sparkle-layer" aria-hidden="true"></div>
+
+         <img src="../img/dr_fm_mk2.png" alt="もこもこ下" class="moko-bottom">
+
+</section>
+
+
+
+<!-- ===== 詳細モーダル ===== -->
+<div class="fm-modal" id="fmModal" aria-hidden="true">
+  <div class="fm-modal__backdrop"></div>
+
+  <article class="fm-card" role="dialog" aria-modal="true" aria-labelledby="fmCardTitle">
+    <button class="fm-close" aria-label="閉じる">×</button>
+
+    <div class="fm-badge" id="fmCardTitle">TITLE</div>
+
+    <img class="fm-card__img" src="" alt="">
+    <p class="fm-card__text"></p>
+
+  <div class="fm-meta">
+          <div><span>甘み</span><span class="star">★★★☆☆</span></div>
+          <div><span>すっきり</span><span class="star">★★★☆☆</span></div>
+        </div>
+  </article>
+</div>
+
+
+
+<!-- 下層ページ→ナビ -->
+<section class="sa_mt">
+    <div class="w1200">
+        <h2 class="jap">さあ、あなたの“良い夜”を見つけに</h2>
+<div>
+<a href="../access/index.html" class="btn">お店を探す
+<span class="btn-icon">→</span>
+</a>
+
+<a href="../faq/index.html" class="btn">よくあるご質問
+<span class="btn-icon">→</span>
+</a>
+</div>
+    </div>
+</section>
+</main>
+
+
+
+<!-- 下層ページ→フッター -->
+<footer>
+    <nav>
+        <ul>
+            <a href="../concept/index.html"><li>Concept</li></a>
+            <a href="../food/index.html"><li>Food</li></a>
+            <a href="../drink/index.html"><li>Drink</li></a>
+            <a href="../event/index.html"><li>Event</li></a>
+            <a href="../access/index.html"><li>Access</li></a>
+            <a href="../faq/index.html"><li>FAQ</li></a>
+        </ul>
+    </nav>
+    <div>
+        <a href="../index.html"><img src="../img/to_footer_logo.png" alt="YOIのロゴ" width="153" height="112"></a>
+    </div>
+    <p>🄫2025YOI</p>
+    <div class="sns">
+        <a href="#"><img src="../img/to_footer_insta.png" alt="Instagramのロゴ" width="41" height="41"></a>
+        <a href="#"><img src="../img/to_footer_tiktok.png" alt="TikTokのロゴ" width="65" height="65"></a>
+    </div>
+</footer>
+
+<script>
+(() => {
+  // 画面内の .carousel を全部初期化
+  document.querySelectorAll('.carousel').forEach(initCarousel);
+
+  function initCarousel(root){
+
+    
+    // 1) マークアップを正規化（どんな入れ子でもOK）
+    // すべてのカードを深さに関係なく拾う
+    const allCards = Array.from(root.querySelectorAll('article.card'));
+
+    // viewport / track を用意
+    let viewport = root.querySelector(':scope > .viewport');
+    if (!viewport) {
+      viewport = document.createElement('div');
+      viewport.className = 'viewport';
+      root.appendChild(viewport);
+    }
+    let track = viewport.querySelector(':scope > .track');
+    if (!track) {
+      track = document.createElement('div');
+      track.className = 'track';
+      viewport.appendChild(track);
+    }
+
+    // track の中身をカードだけに整理（順序はDOM順）
+    allCards.forEach(card => { if (card.parentElement !== track) track.appendChild(card); });
+
+    // ボタン（なければ作る）… `.carousel`直下に配置
+    let prevBtn = root.querySelector(':scope > .prev');
+    let nextBtn = root.querySelector(':scope > .next');
+    if (!prevBtn) {
+      prevBtn = document.createElement('button');
+      prevBtn.className = 'nav prev';
+      prevBtn.type = 'button';
+      prevBtn.textContent = '‹';
+      root.insertBefore(prevBtn, viewport);
+    }
+    if (!nextBtn) {
+      nextBtn = document.createElement('button');
+      nextBtn.className = 'nav next';
+      nextBtn.type = 'button';
+      nextBtn.textContent = '›';
+      root.appendChild(nextBtn);
+    }
+
+    // 2) 最低限のスタイルを補強（CSSが無くても動くように）
+    const cs = (el) => getComputedStyle(el);
+    viewport.style.overflowX = 'auto';
+    if (!cs(viewport).scrollSnapType) viewport.style.scrollSnapType = 'x mandatory';
+    if (!cs(viewport).scrollBehavior)  viewport.style.scrollBehavior = 'smooth';
+    if (cs(track).display !== 'flex')  track.style.display = 'flex';
+    if (!cs(track).gap)                track.style.gap = '30px';
+
+    // 3) ページ送り（クリック何回でもOK、端でループ）
+    const gapPx  = () => parseInt(cs(track).gap || '0', 10) || 0;
+    const cardW  = () => track.querySelector('.card')?.getBoundingClientRect().width || 0;
+    const step   = () => cardW() + gapPx();
+    const perView= () => Math.max(1, Math.floor((viewport.clientWidth + gapPx()) / step()));
+    const pageW  = () => step() * perView();
+    const pagesMax = () => Math.max(0, Math.ceil(track.children.length / perView()) - 1);
+    const pageNow  = () => Math.round(viewport.scrollLeft / pageW());
+
+    function snapTo(p){
+      const max = pagesMax();
+      const loop = (n, m) => ((n % (m + 1)) + (m + 1)) % (m + 1); // 0..max で循環
+      const pg = loop(p, max);
+      viewport.scrollTo({ left: pg * pageW(), behavior: 'smooth' });
+    }
+    function go(d){ snapTo(pageNow() + d); }
+
+    prevBtn.onclick = () => go(-1);
+    nextBtn.onclick = () => go(+1);
+
+    
+
+    // 4) 長押しで流し続ける（端でループ）
+    let rafId=null, dir=0, last=0;
+    const SPEED = 700; // px/s
+    function startAuto(d){
+      stopAuto(); dir=d; last=0;
+      const oldSnap = cs(viewport).scrollSnapType;
+      viewport.dataset.snapOld = oldSnap;
+      viewport.style.scrollSnapType = 'none';
+      const tick = (t)=>{
+        if (!last) last=t;
+        const dt=(t-last)/1000; last=t;
+        viewport.scrollLeft += dir * SPEED * dt;
+        const maxScroll = track.scrollWidth - viewport.clientWidth;
+        if (viewport.scrollLeft > maxScroll && dir>0) viewport.scrollLeft = 0;
+        if (viewport.scrollLeft < 0         && dir<0) viewport.scrollLeft = maxScroll;
+        rafId = requestAnimationFrame(tick);
+      };
+      rafId = requestAnimationFrame(tick);
+      return ()=>{
+        stopAuto();
+        viewport.style.scrollSnapType = viewport.dataset.snapOld || 'x mandatory';
+        snapTo(pageNow());
+      };
+    }
+    function stopAuto(){ if (rafId) cancelAnimationFrame(rafId); rafId=null; }
+    let stopFn=null;
+    nextBtn.addEventListener('mousedown', ()=>{ stopFn = startAuto(+1); });
+    prevBtn.addEventListener('mousedown', ()=>{ stopFn = startAuto(-1); });
+    window.addEventListener('mouseup',   ()=>{ if (stopFn){ stopFn(); stopFn=null; } });
+    nextBtn.addEventListener('mouseleave',()=>{ if (stopFn){ stopFn(); stopFn=null; } });
+    prevBtn.addEventListener('mouseleave',()=>{ if (stopFn){ stopFn(); stopFn=null; } });
+    nextBtn.addEventListener('touchstart', e=>{ e.preventDefault(); stopFn=startAuto(+1); }, {passive:false});
+    prevBtn.addEventListener('touchstart', e=>{ e.preventDefault(); stopFn=startAuto(-1); }, {passive:false});
+    window.addEventListener('touchend',   ()=>{ if (stopFn){ stopFn(); stopFn=null; } });
+    window.addEventListener('touchcancel',()=>{ if (stopFn){ stopFn(); stopFn=null; } });
+
+    // 5) 初期あわせ＋ボタンを viewport 中央基準で配置したい場合の変数
+    function refresh(){
+      root.style.setProperty('--vp-w', viewport.clientWidth + 'px');
+      snapTo(pageNow());
+    }
+    window.addEventListener('resize', refresh);
+    refresh();
+  }
+})();
+</script>
+
+
+<script>
+/* 商品データ：必要な分だけ追加 */
+const FM_ITEMS = {
+  peach: {
+    title: "PEACH SOUR",
+    img: "../img/dr_cn_pc.png",
+    text: "白桃のジューシーな甘みと\n香りがふわっと広がる\nやさしい口当たりで、初めての人にもおすすめ"
+  },
+  strawberry: {
+    title: "STRAWBERRY SOUR",
+    img: "../img/dr_cn_sb.png",
+    text: "いちごのほのかな酸味が\nふんわり広がる\n可愛さに思わず笑顔になる1本"
+  },
+  blue: {
+    title: "BLUE HAWAII",
+    img: "../img/dr_cn_bh.png",
+    text: "ラムネのような爽快感と\n夏の海を思わせる\n透明感のある味わい"
+  },
+  lemon: {
+    title: "LEMON SOUR",
+    img: "../img/dr_cn_lm.png",
+    text: "キリッとした酸味が\nクセになる定番サワー\n飲むほどにリフレッシュ"
+  },
+  Cherry: {
+    title: "CHERRY SOUR",
+    img: "../img/dr_cn_cs.png",
+    text: "チェリーの甘酸っぱさと\nやわらかな泡が\n口いっぱいに広がります"
+  },
+  Ume: {
+    title: "UME BLOSSOM",
+    img: "../img/dr_bt_um.png",
+    text: "ふんわり梅の香りと\nお花見のような\nほっとする華やかさを感じる一本"
+  },
+  Beer: {
+    title: "YOI BEER",
+    img: "../img/dr_cn_br.png",
+    text: "ごくごく飲める\nはじけるシトラスビール\n甘さ控えめで後味さっぱり"
+  },
+  Citrus: {
+    title: "CITRUS ZEST",
+    img: "../img/dr_bt_cz.png",
+    text: "すっきりとしたレモンと\nグレープフルーツの\n香りはじける爽快な味わい"
+  },
+  Ocean: {
+    title: "OCEAN MIST",
+    img: "../img/dr_bt_om.png",
+    text: "南国の海を思わせる\nやわらかな甘さとトロピカルな香り"
+  },
+  Tropical: {
+    title: "TROPICAL GLOW",
+    img: "../img/dr_bt_tp.png",
+    text: "たくさんのフルーツの味わいと香り\nリゾート気分になれる1本"
+  },
+};
+
+(() => {
+  const modal   = document.getElementById('fmModal');
+  const cardImg = modal.querySelector('.fm-card__img');
+  const cardTxt = modal.querySelector('.fm-card__text');
+  const cardTtl = modal.querySelector('.fm-badge');
+  const closeBtn= modal.querySelector('.fm-close');
+
+  // ピンをクリック → モーダルに差し替えて表示
+  document.querySelectorAll('.fm-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const d  = FM_ITEMS[id];
+      if(!d) return;
+
+      cardTtl.textContent = d.title;
+      cardImg.src = d.img;
+      cardImg.alt = d.title;
+      cardTxt.innerHTML = d.text.replace(/\n/g, '<br>');
+
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  // 閉じる
+  function close(){ modal.setAttribute('aria-hidden','true'); }
+  closeBtn.addEventListener('click', close);
+  modal.querySelector('.fm-modal__backdrop').addEventListener('click', close);
+  window.addEventListener('keydown', e=>{ if(e.key === 'Escape') close(); });
+})();
+</script>
+
+<script>
+(function () {
+  const section  = document.getElementById('flavor');
+  const layer    = section.querySelector('.sparkle-layer');
+
+  // 一度だけ作る（レイアウトに合わせて再配置も可能）
+  function makeSparkles(count = 40) {
+    layer.innerHTML = '';                      // 再配置時はリセット
+    const w = layer.clientWidth;
+    const h = layer.clientHeight;
+    const cx = w / 2, cy = h / 2;
+    const ring = Math.min(w, h) * 0.42;        // セクション中心からの半径
+    const colors = ['#ffd1e0', '#f49db0', '#ffe599', '#b4e3ff'];
+
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('i');
+      s.className = 'sparkle';
+
+      // “周り”に配置（角度 + 少しランダム半径）
+      const ang = Math.random() * Math.PI * 2;
+      const r   = ring * (0.95 + Math.random() * 0.15);
+      const x   = cx + Math.cos(ang) * r;
+      const y   = cy + Math.sin(ang) * r;
+
+      s.style.left  = x + 'px';
+      s.style.top   = y + 'px';
+      s.style.setProperty('--size', (10 + Math.random()*14) + 'px');
+      s.style.setProperty('--dur',  (2.2 + Math.random()*1.8) + 's');
+      s.style.setProperty('--dx',   ((Math.random()-0.5) * 18) + 'px'); // ふわっと揺れる幅
+      s.style.setProperty('--dy',   ((Math.random()-0.5) * 18) + 'px');
+      s.style.setProperty('--col',  colors[Math.floor(Math.random()*colors.length)]);
+      layer.appendChild(s);
+    }
+  }
+
+  // 生成（初回 & リサイズで再配置）
+  makeSparkles();
+  window.addEventListener('resize', () => {
+    // レイアウトが大きく変わった時だけでもOK
+    makeSparkles();
+  });
+  
+
+  // 見えている間だけアニメ再生
+  let visible = false;
+  const io = new IntersectionObserver((ents) => {
+    ents.forEach(e => {
+      if (e.isIntersecting && !visible) {
+        visible = true;
+        layer.classList.add('is-on');   // 再生
+      } else if (!e.isIntersecting && visible) {
+        visible = false;
+        layer.classList.remove('is-on'); // 停止
+      }
+    });
+  }, { threshold: 0.25 });
+
+  io.observe(section);
+})();
+</script>
+
+
+<!-- ハンバーガー-->
+<script src="../js/hamburger.js"></script>
+
+</body>
+
+</html>
+

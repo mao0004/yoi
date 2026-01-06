@@ -1,0 +1,4177 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* div, section,nav,h3{
+    border: 1px solid #000;
+} */
+
+ /* html{
+   scroll-behavior: smooth;
+} */
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        ローディング
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* 画面全体を覆うローディング */
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FFE6EE;
+  color: #fff;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  overflow: hidden; /* ← 泡がはみ出ないように */
+}
+
+/* 本文は最初ちょっと隠しておく（ふわっと出す用） */
+#wrapper {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.loading-logo {
+  width: 200px;
+  animation: pop 1.8s ease forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1; /* ← ロゴだけ先に消える */
+  }
+}
+
+
+
+/* ========= ここから泡アニメーション ========= */
+
+.bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* クリックを邪魔しない */
+}
+
+/* 共通スタイル */
+.bubbles span {
+  position: absolute;
+  bottom: -40px; /* 画面のちょい下から出てくる */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+  animation: bubble 5s linear infinite;
+}
+
+/* それぞれの泡の位置・時間をバラバラに */
+.bubbles span:nth-child(1) {
+  left: 10%;
+  animation-duration: 4s;
+  animation-delay: 0s;
+  transform: scale(0.8);
+}
+.bubbles span:nth-child(2) {
+  left: 25%;
+  animation-duration: 5s;
+  animation-delay: 0.5s;
+  transform: scale(1.1);
+}
+.bubbles span:nth-child(3) {
+  left: 40%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+  transform: scale(0.9);
+}
+.bubbles span:nth-child(4) {
+  left: 55%;
+  animation-duration: 4.5s;
+  animation-delay: 1.5s;
+  transform: scale(1.2);
+}
+.bubbles span:nth-child(5) {
+  left: 70%;
+  animation-duration: 5.5s;
+  animation-delay: 0.3s;
+  transform: scale(0.7);
+}
+.bubbles span:nth-child(6) {
+  left: 82%;
+  animation-duration: 6s;
+  animation-delay: 1.2s;
+  transform: scale(1);
+}
+.bubbles span:nth-child(7) {
+  left: 33%;
+  animation-duration: 4.2s;
+  animation-delay: 2s;
+  transform: scale(0.6);
+}
+.bubbles span:nth-child(8) {
+  left: 63%;
+  animation-duration: 5.8s;
+  animation-delay: 2.3s;
+  transform: scale(1.3);
+}
+
+@keyframes bubble {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translateY(-80vh) translateX(-10px) scale(1.1); }
+  100% { transform: translateY(-200vh) translateX(10px) scale(0.9); opacity: 0; }
+}
+
+
+
+/* ローディング全体をフェードアウト */
+body.loaded #loading {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* 本文をフェードイン */
+#wrapper {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+body.loaded #wrapper {
+  opacity: 1;
+}
+
+
+
+
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            共通
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; 
+}
+a:link{text-decoration: none; color: #393939;}
+a:visited {text-decoration: none; color: #393939;}
+a:hover{text-decoration: none; color: #393939;}
+a:active {text-decoration: none; color: #393939;}
+h2{
+    color: #f99bb2;
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 96px;
+    letter-spacing: 0.07em;
+    text-shadow:
+/* 近い層（あまりガタつかせない） */
+    2px 2px 1px #fff, -2px 2px 1px #fff,
+    2px -2px 1px #fff, -2px -2px 1px #fff,
+    2px 0 1px #fff, -2px 0 1px #fff,
+    0 2px 1px #fff, 0 -2px 1px #fff,
+
+/* 中間層（太さUP） */
+    3px 3px 2px #fff, -3px 3px 2px #fff,
+    3px -3px 2px #fff, -3px -3px 2px #fff,
+    3px 0 2px #fff, -3px 0 2px #fff,
+    0 3px 2px #fff, 0 -3px 2px #fff,
+
+/* 一番外側の層（ぼかし少なめでガタガタ消す） */
+    4px 4px 3px #fff, -4px 4px 3px #fff,
+    4px -4px 3px #fff, -4px -4px 3px #fff,
+    4px 0 3px #fff, -4px 0 3px #fff,
+    0 4px 3px #fff, 0 -4px 3px #fff;
+}
+h3{
+    color: #393939;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    letter-spacing: 0.07em;
+}
+p{
+    color: #393939;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: 0.07em;
+}
+.sub{
+    color: #7bc9e8;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    margin-bottom: 50px;
+    letter-spacing: 0.07em;
+    text-shadow:
+/* 近い層（あまりガタつかせない） */
+    2px 2px 1px #fff, -2px 2px 1px #fff,
+    2px -2px 1px #fff, -2px -2px 1px #fff,
+    2px 0 1px #fff, -2px 0 1px #fff,
+    0 2px 1px #fff, 0 -2px 1px #fff,
+
+/* 中間層（太さUP） */
+    3px 3px 2px #fff, -3px 3px 2px #fff,
+    3px -3px 2px #fff, -3px -3px 2px #fff,
+    3px 0 2px #fff, -3px 0 2px #fff,
+    0 3px 2px #fff, 0 -3px 2px #fff,
+
+/* 一番外側の層（ぼかし少なめでガタガタ消す） */
+    4px 4px 3px #fff, -4px 4px 3px #fff,
+    4px -4px 3px #fff, -4px -4px 3px #fff,
+    4px 0 3px #fff, -4px 0 3px #fff,
+    0 4px 3px #fff, 0 -4px 3px #fff;
+}
+
+.nav_btn{
+color: #393939;
+font-family: "Zen Kaku Gothic New", sans-serif;
+font-weight: 700;
+font-style: normal;
+font-size: 16px;
+line-height: 180%;
+letter-spacing: 0.07em;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: auto;
+padding: 5px 30px;
+  
+background-color: #fff;
+border: 2px solid #393939;
+border-radius: 999px;
+text-decoration: none;
+transition: all .15s ease-in-out;
+cursor: pointer;
+
+/* 💕立体感を出すピンクの影（右下に落とす） */
+box-shadow: 2px 4px 0 #FF8AA6;
+}
+
+.nav_btn:hover { 
+transform: translate(-1px, -1px);
+background-color: #FF8AA6;
+color: #000000;
+box-shadow: 0 0 ; /* 影を0pxにする */
+border: 2px solid #FF8AA6;
+}
+
+.jap{
+    color: #f99bb2;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    letter-spacing: 0.07em;
+}
+img{
+    max-width: 100%;
+    height:auto;
+}
+.w1200{
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+}
+.w1000{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+    border-radius: 100px 100px 0 0;
+    margin-top: 50px;
+
+    height: 400px;
+}
+main{
+    /* ヘッダーの高さ分メインを下げる */
+    margin-top: 70px;
+}
+section{
+    width: 100%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            共通追加部分
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* フッター */
+footer{
+    background-color: #F99BB2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8%;
+    gap: 5vh;
+    position: relative;
+}
+
+footer nav{
+    width: 70%;
+}
+
+footer ul{
+    display: flex;
+    gap: 5%;
+    justify-content: space-between;
+}
+
+footer li{
+    color: #fff;
+    list-style: none;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+}
+
+footer p{
+    color: #fff;
+}
+
+footer .sns{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    position: absolute;
+    right: 10%;
+    bottom: 10vh;
+}
+
+footer a:hover li{
+    opacity: 0.7;
+}
+
+footer a:hover img{
+    opacity: 0.7;
+}
+
+/* ボタン */
+.btn {
+    color: #393939;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: 0.07em;
+    background-color: #F99BB2;
+    border: 2px solid #393939;
+    padding: 15px 35px 15px 60px; /* 右にアイコン分の余白を調整 */
+    border-radius: 100px;
+    box-shadow: 3px 5px 0px 0px #7BC9E8;
+    transition: all .15s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;/* ← 中身を横並びにする */
+    align-items: center; /* 縦位置を中央へ */
+    gap: 15px; /* 文字とアイコンの距離 */
+    text-decoration: none;  /* aタグの下線を消す */
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #393939;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.btn:hover {
+    transform: translate(-1px, -1px);
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0;
+}
+
+.btn:hover .btn-icon {
+    background: #F99BB2; /* ← ホバー時に円も変えたかったら */
+}
+
+/* フッターの上のセクション */
+.sa_mt {
+    background-color: #E9F9FF;
+    min-height: 640px;          /* PCのときの高さ */
+    display: flex;              /* 中身を中央寄せするためにflexを使う */
+    justify-content: center;    /* 横中央 */
+    align-items: center;        /* 縦中央 */
+    text-align: center;
+    background-image: url(../img/sa_dr_hk.png);
+    background-repeat: no-repeat;
+    background-position: right 15% bottom 15%;
+    background-size: min(70%, 400px); 
+
+}
+
+.sa_mt h2 {
+  display: inline-block;
+  background-image: url(../img/sa_fd.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  padding: 1.5rem 4rem 3rem;
+  margin: 0 auto 30px;
+
+  white-space: nowrap;      /* ★ 全デバイスで1行固定 */
+  text-align: center;
+  box-sizing: border-box;
+  font-size: clamp(20px, 2.4vw, 32px);
+  color: #7BC9E8;
+  display: inline-block;
+  background-image: url(../img/sa_fd.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  padding: 1.5rem 4rem 3rem;
+  margin: 0 0 30px;
+
+  white-space: nowrap;     /* 全デバイスで1行 */
+  text-align: center;      /* 文字は中央 */
+}
+
+.sa_mt .w1200 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     
+
+}
+
+.sa_mt .w1200 > div {
+  display: flex;
+  justify-content: center;  /* 中央寄せ */
+  gap: 40px;                /* ボタン同士の隙間（PC時） */
+  flex-wrap: wrap;          /* スマホ時は自動で縦並び */
+
+}
+
+
+/* ヘッダー */
+header{
+    width: 100%;
+    height: 70px;
+    background-color: #7bc9e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+header ul {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+}
+
+/* ===========================
+   ハンバーガーアイコン
+=========================== */
+/* ===== ハンバーガー（共通） ===== */
+.nav-toggle{
+  --size: 56px;
+  --bar-w: 23px;
+  --bar-h: 3px;
+  --gap: 8px;
+
+  display: none;                 /* ← PCでは隠す */
+  width: var(--size);
+  height: var(--size);
+  position: fixed;               /* 画面右上に固定 */
+  top: 5px;
+  right: 25px;
+  border-radius: 50%;
+  border: 2px solid #393939;
+  background:#fff;
+  box-shadow: 3px 5px 0 #FF8AA6;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 10002;                /* メニューより前面に */
+}
+
+/* 3本線（中央基準） */
+.nav-toggle__bar{
+  position:absolute;
+  left:50%;
+  width: var(--bar-w);
+  height: var(--bar-h);
+  background:#393939;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transform-origin: 50% 50%;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.nav-toggle__bar--mid{ top:50%; transform: translate(-50%, -50%); }
+.nav-toggle__bar--top{ top: calc(48% - var(--gap)); }
+.nav-toggle__bar--bot{ top: calc(50% + var(--gap)); }
+
+/* アクティブで「×」に変形 */
+.nav-toggle.active .nav-toggle__bar--top{
+  top:50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.nav-toggle.active .nav-toggle__bar--bot{
+  top:50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.nav-toggle.active .nav-toggle__bar--mid{
+  opacity:0;
+  transform: translate(-50%, -50%) scaleX(.7);
+}
+
+/* 全画面メニュー */
+.nav-menu{
+  display:none;
+  position:fixed;
+  inset:0;
+  background: linear-gradient(#fcaec3, #ffe4ec);
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  z-index:10000;                 /* ボタンより低く */
+}
+.nav-menu.active{ display:flex; }
+
+header a:hover img{
+    opacity: 0.7;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        まおさん
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー *
+
+
+/* ーーーーーーーーーーーーーーー
+       ファーストビュー
+ーーーーーーーーーーーーーーー */
+/* ===== ベース ===== */
+.fv{
+  position: relative;
+  width: 100%;      /* ← 全幅 */
+  max-width: none;  /* ← 最大幅の制限を解除 */
+  margin: 0;        /* ← 中央寄せを解除 */
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 1440 / 560; /* 必要なら残す */
+  border:none
+}
+
+.fv > img,
+.fv__cta{ position: absolute; display:block; }
+
+/* 背景 */
+.fv__bg{ inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+
+/* 飾り（任意。無ければ削除OK） */
+.fv__bunting{
+  top:0; left:50%; translate:-50% 0;
+  width:102%; max-width:none; z-index:2;
+}
+
+/* ロゴ類 */
+.fv__mark{
+  left:4%; top:32%;
+  width: clamp(180px, 22vw, 320px);
+  z-index:3;
+}
+
+/* 缶の初期配置（PC） */
+.fv__can{ width: clamp(180px, 22vw, 260px); z-index:4; transform-origin: 50% 100%; }
+.fv__can--left { left: 35%; top: 40%; rotate: -18deg; }
+.fv__can--right{ right: 30%; top: 40%; rotate: 18deg; }
+
+
+
+.fv__cheers{
+  position: absolute;
+  left: 51%;
+  top: 35%;
+  width: clamp(80px, 10vw, 120px);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  scale: .7;
+  z-index: 20; /* 缶より前面 */
+  pointer-events: none;
+}
+
+/* 乾杯時アニメーション */
+@keyframes cheersPop {
+  0%   { opacity: 0; scale: .7; }
+  20%  { opacity: 1; scale: 1; }
+  70%  { opacity: 1; scale: 1; }
+  100% { opacity: 0; scale: .9; }
+}
+
+.fv.is-cheers .fv__cheers{
+  animation: cheersPop .9s ease-out forwards;
+}
+
+
+
+
+/* ==白いキラキラ==*/
+.fv__kirakira {
+  position: absolute;
+  width: clamp(10px, 4vw, 20px);
+  opacity: 0.85;
+  z-index: 3;
+  border: none;
+}
+
+.fv__kirakira img {width: 100%;height: auto;}
+
+/* --- 位置指定（自由に調整してOK） --- */
+.fv__kirakira--01 { top: 55%; left: 3%; }
+.fv__kirakira--02 { top: 30%; left: 20%; }
+.fv__kirakira--03 { top: 50%; right: 5%; }
+.fv__kirakira--04 { top: 30%; right: 10%; }
+.fv__kirakira--05 { top: 90%; right: 20%; }
+.fv__kirakira--06 { top: 85%; left: 20%; }
+
+
+
+/* きらきらは最初は非表示（アニメで出す） */
+.fv__spark{
+  width: clamp(150px, 22vw, 200px);
+  opacity: 0; scale: .3;
+  z-index:5; pointer-events:none;
+}
+.fv__spark--1{ left: 35%; top: 20%; }
+.fv__spark--2{ left: 56%; top: 26%; }
+
+/* 吹き出しCTA（画像を背景に使用） */
+.fv__cta{
+  right: 6%; top: 34%;
+  width: clamp(180px, 22vw, 260px);
+  aspect-ratio: 1 / 1;           /* 画像の形に合わせて調整 */
+  
+  text-decoration:none;
+  z-index:6;
+  display:grid; place-items:center; 
+  font: 700 clamp(12px, 1.6vw, 18px)/1.2 "Zen Kaku Gothic New", sans-serif;
+  
+}
+
+.fv__cta h3{
+  text-align: center;
+}
+
+
+
+h3 .pnk {
+    color: #F7587F;      /* ← 好きな色 */
+    font-weight: 700;    /* 必要なら強調 */
+}
+
+
+
+/* CTA本体（文字・擬似要素の基準となる箱） */
+.fv__cta{
+  position: absolute;
+  right: 6%; 
+  top: 34%;
+
+  width: clamp(180px, 22vw, 260px);
+  aspect-ratio: 1 / 1;
+
+  display: grid;
+  place-items: center;           /* 文字を中央配置 */
+  text-decoration: none;
+  z-index: 6;
+
+  /* 回転しない文字のための stacking context */
+  isolation: isolate;            /* ← これがあると z-index が安定して完璧になる */
+}
+
+/* ✅ 擬似要素で背景バッジを作成（これだけ回す） */
+.fv__cta::before{
+  content:"";
+  position: absolute;
+  inset: 0;
+  background: url("../img/fv-badge.png") no-repeat center / contain;
+
+  z-index: -1;                   /* 文字より後ろに置く */
+  animation: rotate-badge 12s linear infinite;
+  transform-origin: center;      /* 中心で回転させる */
+}
+
+/* ✅ ホバーで回転を止める */
+.fv__cta:hover::before{
+  animation-play-state: paused;
+}
+
+/* ✅ 中のテキスト */
+.fv__cta h3{
+  text-align: center;
+  letter-spacing: .07em;
+  
+}
+
+/* ✅ 強調部分（ドリンク診断） */
+.fv__cta .pnk{
+  color:#F7587F;
+}
+
+/* ✅ 回転アニメーション */
+@keyframes rotate-badge {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* ===== ふわふわアイドル（常時） ===== */
+@keyframes canFloat {
+  0%   { translate:0 0; }
+  50%  { translate:0 -6px; }
+  100% { translate:0 0; }
+}
+.fv__can{ animation: canFloat 4s ease-in-out infinite; }
+.fv__can--right{ animation-delay: .2s; }
+
+/* ===== 乾杯アクション ===== */
+@keyframes clinkL {
+  0% { rotate:-18deg; translate:0 0; }
+  35%{
+    rotate:-2deg;        /* ← ぶつかる瞬間にほぼまっすぐ */
+    translate: 26px -14px; /* ← もっと右＆上へ */
+  }
+  55%{
+    rotate:-12deg;       /* ← ちょっと跳ね返る */
+    translate: 12px 2px;
+  }
+  100%{ rotate:-18deg; translate:0 0; }
+}
+
+@keyframes clinkR {
+  0% { rotate:18deg; translate:0 0; }
+  35%{
+    rotate:2deg;         /* ← 左に寄ってくる */
+    translate:-26px -14px;
+  }
+  55%{
+    rotate:12deg;        /* ← 跳ね返り */
+    translate:-12px 2px;
+  }
+  100%{ rotate:18deg; translate:0 0; }
+}
+
+
+@keyframes sparkle {
+  0% { opacity:0; scale:.3; }
+  25%{ opacity:1; scale:1; }
+  100%{ opacity:0; scale:1.2; }
+}
+
+/* .is-cheers が付いたら1回だけ実行 */
+.fv.is-cheers .fv__can--left { animation: clinkL 1.1s ease-out, canFloat 4s 1.1s ease-in-out infinite; }
+.fv.is-cheers .fv__can--right{ animation: clinkR 1.1s ease-out, canFloat 4s 1.1s ease-in-out infinite; }
+.fv.is-cheers .fv__spark{ animation: sparkle .9s ease-out .2s both; }
+
+
+
+/* ============================帯本体 ============================ */
+
+.fv__belt {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  gap: 1rem;
+  font-size: 2rem;
+  background-color: #7BC9E8;
+  border: none;
+}
+
+
+
+.fv__belt h3 {
+    color: #ffffff;
+    letter-spacing: 0.2em;
+    
+}
+
+
+.fv__belt-inner {
+  animation: fv__belt-scroll 20s linear infinite;
+  border: none;
+ 
+}
+
+@keyframes fv__belt-scroll {
+  0%   { translate: 0; }
+  100% { translate: calc(-100% - 1rem); }
+}
+
+
+/* ーーーーーーーーーーーーーーー
+        アバウトページ
+ーーーーーーーーーーーーーーー */
+/* ABOUT→ポリシー */
+/* ーーーーーーーーーーーーーーー
+        アバウトページ
+ーーーーーーーーーーーーーーー */
+/* ABOUT→ファースト */
+
+.concept .first{
+background-color: #E9F9FF;
+}
+.concept .w1000{
+  background-image: url(../img/co_fastbg.png);
+  height: 933px;
+  position: relative; 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.co_logo{
+width: 350px;
+height: auto;
+z-index: 1;
+}
+
+.co_comment{
+text-align: center;
+position: absolute;
+bottom: 10%;
+}
+
+.co_hito{
+position: absolute;
+  
+}
+
+.co_hito01{ 
+top: 56%; left: 5%; 
+width: 90px;
+height: auto;
+}
+
+.co_hito02{ 
+top: 55%; left: 17%; 
+width: 100px;
+height: auto;
+}
+
+.co_hito03{ 
+top: 55%; right: 6%; 
+width: 140px;
+height: auto;
+}
+
+
+.co_brbk{
+position: absolute;
+width: 300px;
+height: auto;
+opacity: 0.35;/* 不透明度 */
+}
+
+.co_br01 { top: 10%; left: -1%; }
+.co_br02 { top: 10%; right: -1%;  
+transform: scaleX(-1);/* 画像を反転させる*/}
+
+
+
+/* 星の基本スタイル */
+.co_star{
+  position: absolute;
+  z-index: 1;          /* 背景より上、ロゴなどより下にしたかったら調整してOK */
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* 星の基本スタイル */
+.co_kira{
+  position: absolute;
+  z-index: 1;          /* 背景より上、ロゴなどより下にしたかったら調整してOK */
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.co_star img{
+  display: block;
+  width: 50px;         /* 星のサイズ（PC用） */
+  height: auto;
+}
+
+.co_kira img{
+  display: block;
+  width: 20px;         /* 星のサイズ（PC用） */
+  height: auto;
+}
+
+/* それぞれの星の位置（PC） */
+.co_star01{  /* 左上あたり */
+  top: 8%;
+  left: 12%;
+  animation-duration: 2s;
+}
+
+.co_star02{  /* 左上あたり */
+  top:45%;
+  right: 12%;
+  animation-duration: 2s;
+}
+
+
+.co_kira01{  /* 右上あたり */
+  top: 12%;
+  right: 10%;
+  animation-duration: 2s;
+  animation-delay: .5s;
+}
+
+.co_kira02{  /* ロゴの少し下の右寄りとか */
+  top: 35%;
+  right: 17%;
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+
+
+
+.co_kira03{  /* 右上あたり */
+  top: 33%;
+  left: 5%;
+  animation-duration: 2s;
+  animation-delay: .5s;
+}
+
+.co_kira04{  /* ロゴの少し下の右寄りとか */
+  top: 45%;
+  left: 22%;
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+
+
+
+/* キラキラ揺れるアニメーション */
+@keyframes twinkle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-4px) scale(1.1);  /* ふわっと上に＆ちょい拡大 */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+}
+
+
+
+/*  ====ABOUT→ポリシー==== */
+.concept .policy{
+  /* 背景の命令（方眼紙バージョン） */
+  background-image: linear-gradient(#d4e5ec 1px, transparent 1px), linear-gradient(90deg, #d4e5ec 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-color: #fff;
+}
+
+/* 帯全体 */
+.co-belt {
+  overflow: hidden;
+  padding-block: 35px;
+}
+
+/* くまくまの wrap と同じ役割 */
+.co-belt__wrap {
+  display: flex;
+  overflow: hidden;
+}
+
+/* 1列ぶんのリスト */
+.co-belt__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 左方向に無限スクロール */
+@keyframes co-belt-scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }  /* 自分の幅ぶん左へ */
+}
+
+.co-belt__list--left {
+  animation: co-belt-scroll-left 15s linear infinite;
+}
+
+/* ホバーしたら全体止める */
+.co-belt:hover .co-belt__list--left {
+  animation-play-state: paused;
+}
+
+/* 各アイテム（缶1本ぶんの箱） */
+.co-belt__item {
+  flex: 0 0 auto;       /* 横幅固定で流れる用 */
+  margin-right: 55px;   /* 缶と缶のすき間 */
+}
+
+/* 背景が缶の PNG のカード */
+.co-card {
+  position: relative;
+  width: 260px;              /* 好きな幅 */
+  aspect-ratio: 584 / 1039;  /* PNGの比率に合わせる */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 缶ごとに背景だけ変える */
+.co-card--01 { background-image: url("../img/co_kan01.png"); }
+.co-card--02 { background-image: url("../img/co_kan02.png"); }
+.co-card--03 { background-image: url("../img/co_kan03.png"); }
+.co-card--04 { background-image: url("../img/co_kan04.png"); }
+
+/* 白い枠の中のテキストゾーン（位置はPNGに合わせて調整） */
+.co-card__body {
+  position: absolute;
+  left: 12%;
+  right: 13%;
+  top: 36%;
+  bottom: 28%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.co-card__body p {
+  margin: 0;
+  color: #393939;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+
+
+/*  ====ABOUT→こだわり==== */
+.concept .kodawari{
+background-color: #FFE6EE;
+padding-bottom: 200px;
+padding-top: 200px;}
+
+.kodawari{
+background-color: #7BC9E8;}
+
+
+.kodawari .w1200{
+background-image: url("../img/co_hukidashi_os.png") ;
+background-repeat: no-repeat;
+background-position: center 5px;}
+
+
+.co_kodawari{
+display: flex;gap: 80px; margin-top: 50px;margin-bottom: 50px;}
+
+.co_kodawari-02{
+display: flex;gap: 80px;margin-top: 50px;margin-bottom: 50px;}
+
+.co_kodawari h2 {
+color: #7BC9E8;
+text-align: center;}
+
+.co_kodawari-02 h2 {
+color: #7BC9E8;
+text-align: center;}
+
+.co_kodawari_box p{
+  width: 310px;
+  text-align: center;
+ 
+ margin: 30px 0;}
+
+.co_kodawari_box{text-align: center;}
+.co_line{width: 298px;height: aoto;}
+.co_kodawari_huki{width: 457px;}
+
+/* ーーーーーーーーーーーーーーー
+        アクセスページ
+ーーーーーーーーーーーーーーー */
+
+.access .ac-shop01{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#F99BB2 1px, transparent 1px), linear-gradient(90deg, #F99BB2 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;
+}
+
+.access .ac-shop02{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#7BC9E8 1px, transparent 1px), linear-gradient(90deg, #7BC9E8 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;
+    padding-bottom: 200px;
+}
+
+
+/* .access h2{
+margin-top: 50px;} */
+
+.ac-sub{
+text-align: center;}
+
+.access .first{
+background-color: #E9F9FF;}
+
+.access .ac-shop{
+background-color: #E9F9FF;}
+
+.ac-shop-all{
+display: flex;
+gap: 40px;
+}
+
+/* 共通のカードホバー演出 */
+.ac-shop-box01,
+.ac-shop-box02 {
+  text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 550px;
+  height: 760px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ← アニメーション */
+  cursor: pointer; /* クリックできそうな感じに */
+}
+
+/* 画像は今まで通り */
+.ac-shop-box01 {
+  background-image: url("../img/ac-shopbk01.png");
+}
+
+.ac-shop-box02 {
+  background-image: url("../img/ac-shopbk02.png");
+}
+
+/* ホバーしたときに「ぷわっ」と浮く */
+.ac-shop-box01:hover,
+.ac-shop-box02:hover {
+  transform: translateY(-10px) scale(1.02);  /* ちょっと上 + 少し拡大 */
+ 
+}
+
+
+
+.ac-huki-tx01{
+  text-align: center;
+  background-image: url("../img/ac-shop-huki01.png"); /* ←新しい画像 */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 550px; height: auto;
+  margin-top: 170px;
+  padding-top: 11px;
+  padding-bottom: 20px;
+}
+
+
+.ac-huki-tx02{
+  text-align: center;
+  background-image: url("../img/ac-shop-huki02.png"); /* ←新しい画像 */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 550px; height: auto;
+  margin-top: 170px;
+  padding-top: 11px;
+  padding-bottom: 20px;
+}
+  
+
+.ac-shop-ph{
+  width: 400px;
+  height: auto;
+  margin-top: 25px;}
+
+.ac-shop-name{
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 900;
+  text-align: center;
+  -webkit-text-stroke: 1.5px #393939; /* ← 外枠（輪郭） */
+
+}
+
+
+/* =====アクセス→どっちに行く？====== */
+
+/* セクション背景 */
+.ac-choose{
+  background: #E9F9FF;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* 中央配置用 */
+.ac-choose-inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+}
+
+/* 矢印画像 */
+/* 共通の矢印画像 */
+.ac-choose-arrow{
+  width: 80px;
+  height: auto;
+}
+
+/* 左右反転用 */
+.ac-choose-arrow.left{
+  transform: scaleX(-1);
+}
+
+
+/* 円形テキストの外枠（中央位置のため） */
+.ac-circle-wrap{
+  position: relative;
+  width: 350px;
+  height: 350px;
+}
+
+/* くるくる回る円形テキスト */
+.ac-circle{
+  width: 100%;
+  height: auto;
+  animation: rotateCircle 12s linear infinite;
+  display: block;
+}
+
+/* 中央の乾杯画像 */
+.ac-kanpai{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  transform: translate(-50%, -50%);
+}
+
+/* 回転アニメーション */
+@keyframes rotateCircle{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }
+}
+
+
+
+/* =====アクセス→下北沢店====== */
+
+/* アクセス全体 */
+
+/* .ac-shop01 .w1200{
+ 
+  
+} */
+
+
+
+.ac-map .w1200 {
+  width:1200px;      /* ←念のため追加 */
+  margin: 0 auto;
+  position: relative;   /* ←これ！絶対位置の基準になる */
+
+}
+
+
+
+/* カード本体 */
+.ac-map-card01 {
+  position: relative;
+  background: url("../img/ac-mapbk-01.png") no-repeat center / contain;
+  box-sizing: border-box;
+  padding: 150px 100px 120px;
+  margin-top: -100px; /* 好きな量だけマイナスにして上に引き上げる */
+  
+  
+}
+
+.ac-map-card02 {
+  position: relative;
+  background: url("../img/ac-mapbk-02.png") no-repeat center / contain;
+  box-sizing: border-box;
+  padding: 150px 100px 120px;
+  margin-top: -100px; /* 好きな量だけマイナスにして上に引き上げる */
+  
+}
+
+.ac-shop02 .w1200{
+ 
+  padding-bottom: 0px;
+  margin-top: 100px;
+}
+
+
+
+/* ピンアイコン（カードの上にちょこんと乗せる） */
+/* ピンアイコン */
+.ac-map-pin {
+  position: absolute;
+  top: 5px;
+  left: 30%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: auto;
+  animation: pinBounce 1.8s ease-in-out infinite;
+}
+
+/* ピョーン！とジャンプ → 着地で軽く弾む */
+@keyframes pinBounce {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  25% {
+    transform: translateX(-50%) translateY(-40px); /* ← 高くジャンプ！ */
+  }
+  40% {
+    transform: translateX(-50%) translateY(0); /* 着地 */
+  }
+  55% {
+    transform: translateX(-50%) translateY(-18px); /* 着地後のバウンド */
+  }
+  70% {
+    transform: translateX(-50%) translateY(0); /* 落ち着く */
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+/* 中身（地図＋テキスト）を横並び */
+.ac-map-inner {
+  display: flex;
+  gap: 40px;
+  align-items: center;   /* ← これ！縦方向の中央揃え */
+  width: fit-content;
+  margin: 0 auto;
+
+}
+
+/* 地図エリア */
+.ac-map-embed {
+  flex: 0 0 400px;   /* 横幅固定 */
+  height: 280px;     /* ←縦幅ここで指定する */
+  background: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ac-map-embed iframe {
+  display: block;
+  height: 280px;
+  border: 0;
+
+}
+
+/* テキストエリア */
+.ac-map-info {
+  width: 300px;
+  flex: 0 0 auto;
+}
+
+
+
+.ac-map-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* バッジ全体の配置（カード右下に固定） */
+.ac-badge{
+  position: absolute;
+  right: 160px;
+  bottom: -50px;
+  width: 180px;
+  height: 180px;
+  pointer-events: none;
+}
+
+/* バッジ画像（ここだけ回転） */
+.ac-badge img{
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: spin 10s linear infinite; /* ← 回転アニメーション */
+}
+
+/* テキスト配置（画像の上に中央固定） */
+.ac-badge p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #393939;
+}
+
+/* 回転アニメーション */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.ac-bg-blue{
+  color: #7BC9E8;
+  font-size: 13px;
+  font-weight: 600;
+
+}
+
+.ac-bg-pink{
+  color: #F99BB2;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* ーーーーーーーーーーーーーーー
+        よくある質問ページ
+ーーーーーーーーーーーーーーー */
+/* .faq h2{
+ margin-top: 50px;  } */
+
+.faq .all {
+background-color: #E9F9FF;
+padding-top: 0px;
+padding-bottom: 100px;}
+
+.fa-bk{
+  position: relative;
+  padding: 40px;
+  overflow: hidden;       /* はみ出し防止 */
+  width: 1000px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.fa-bk::before{
+content: "";
+position: absolute;
+inset: 20px;    /* 角丸BOXの余白 */
+border-radius: 100px;   /* 角丸 */
+background-image:
+linear-gradient(#F99BB2 1px, transparent 1px),
+linear-gradient(90deg, #F99BB2 1px, transparent 1px);
+background-size: 60px 60px;
+background-color: #fff;
+z-index: 1;
+}
+
+
+.fa-huki-tx01{
+  text-align: center;
+  background-image: url("../img/fa-fuki.png"); /* ←新しい画像 */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 550px; height: auto;
+  margin: 70px auto 0;
+  padding-top: 18px;
+  padding-bottom: 38px;
+  position: relative;  /* ←これ追加！ */
+  z-index: 5;          /* ←格子柄より前に出す */
+ 
+}
+
+
+
+/* =========リスト全体 ========*/
+.faq-list {
+  position: relative;  /* ←これ追加！ */
+  z-index: 5;          /* ←格子柄より前に出す */
+  list-style: none;
+  margin: 40px auto 0;
+  padding: 0;
+  max-width: 800px;
+}
+
+/* 全体 */
+.faq-item {
+  margin-bottom: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  border: 2px solid #393939; /* ←見た目の外枠はここだけ */
+}
+
+/* 質問部分（ピンク） */
+.faq-question {
+  width: 100%;
+  background: #f9c7d4;
+  border: none; /* ←ここ大事！内部に border いれない */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: #393939;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  /* ピンクと白の境界線を擬似的に作る （黒い線） */
+  box-shadow: 0 2px 0 #393939; 
+}
+
+/* 回答部分（白） */
+.faq-answer {
+  display: none;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px;
+  background: #fff;
+}
+
+/* 開いている時 */
+.faq-item.is-open .faq-answer {
+  display: flex;
+}
+
+
+/* "Q"のアイコン */
+.faq .q-icon {
+  background: #fff;
+  color: #393939;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;;
+  box-shadow: 2px 2px 0 #7BC9E8;
+  padding-bottom: 2px;  /* ← 下に余白を追加＝Qが上に行く */
+  
+}
+
+/* A アイコン */
+.faq .icon-a {
+ background: #fff;
+  color: #393939;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;;
+  box-shadow: 2px 2px 0 #e87bae;
+}
+
+
+/* プラス/マイナスボタン */
+.faq .toggle-btn {
+  background: #fff;
+  color: #393939;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 14px;;
+  box-shadow: 2px 4px 0 #7BC9E8;
+  padding-left: 1px;  /* ← 下に余白を追加＝Qが上に行く */
+}
+
+
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        かやねさん
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ーーーーーーーーーーーーーーー
+        ドリンクページ
+ーーーーーーーーーーーーーーー */
+/* 缶 */
+
+.drink .first{
+background-position: center;  
+background-color: #EAF9FF;   
+
+}
+
+.drink .w1000{
+ background-image: url(../img/dr_fv.png);
+}
+
+.drink .can{
+background-image: linear-gradient(#7BC9E8 1px, transparent 1px), linear-gradient(90deg, #7BC9E8 1px, transparent 1px);
+background-size: 60px 60px;
+background-color: #fff;
+padding: 80px 0 120px;  
+min-height: 100vh; 
+
+}
+
+.drink .card{
+background:#C2E3F0;
+width: 300px;
+height: 530px;
+border:5px solid #7BC9E8;
+border-radius:40px;
+box-shadow: 0 6px 18px rgba(0,0,0,.08);
+padding:18px 16px 14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+align-items: center;
+text-align: center;
+justify-content: space-between; 
+letter-spacing: 0.07mm; 
+    
+}
+
+.drink .card__badge{
+font-family: "Caveat", cursive;
+font-weight: bold;
+font-size: 20px;
+color: #393939;
+border:5px solid #7BC9E8;
+width: 190px;
+height: 80px;
+margin-top:-10px; 
+border-radius:30px;
+background-color: #fff;
+padding-top: 10px;
+letter-spacing: 0.07mm; 
+
+}
+
+.drink .card__text{
+text-align: center;
+font-weight: 700;
+line-height: 180%;
+margin-bottom: 10px;
+letter-spacing: 0.07mm; 
+font-family: "Zen Kaku Gothic New", sans-serif;
+color: #393939;
+
+}
+
+.drink .card__meta{
+font-family: "Zen Kaku Gothic New", sans-serif;
+font-weight: 700;
+font-style: normal;
+font-size: 16px; 
+color:#393939;
+border:1px solid #393939;
+border-radius: 10px;
+width: 210px;
+height: 65px;
+padding-top: 8px;
+margin-bottom: 10px;
+background-color: #FFE3EA;
+
+}
+
+.star{
+padding-left: 10px;
+color: #FF8AA6;   
+letter-spacing: 2px; 
+
+}
+
+.drink .viewport{
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+max-width: calc((300px + 30px) * 3 - 30px); /* 300px=カード幅, 30px=gap, 3枚表示 */
+margin-inline: auto;  
+
+}
+
+.drink .viewport::-webkit-scrollbar{ display: none; }
+
+.drink .card{
+flex: 0 0 300px;          
+scroll-snap-align: start;
+
+}
+
+.drink .nav{
+  width: 60px;
+  height: 60px;
+  border-radius: 40px; /* ← 0で四角、8〜20で角丸、50%で丸 */
+  background: #F99BB2;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+  transition: 0.3s;
+}
+
+.drink .carousel{
+  position: relative;
+}
+
+.drink .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #F99BB2;
+  border: 2px;
+  border-color: #393939;
+  cursor: pointer;
+  transition: background-color 0.3s,  transform 0.3s;
+ 
+}
+
+.drink .nav.prev { left: -20px; }
+.drink .nav.next { right: -20px; }
+
+.drink .nav:hover {
+  background: #ffffff;
+  transform: translateY(-50%);  
+  color: #F99BB2;
+}
+
+.drink .card__img {
+  transform-origin: 50% 65%;     /* 揺れの軸をやや下（缶の底寄り）に */
+  animation: smoothSway 2s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* 左右にゆったり揺れる */
+ @keyframes smoothSway {
+  0%   { transform: rotate(-10deg); }  /* 左に傾く */
+  100% { transform: rotate(20deg); }   /* 右に傾く */
+}
+
+
+/* ドリンク→フレイバーマップ */
+.drink .flavor .w1200{
+  padding-bottom: 0;
+}
+
+#flavor-map{ padding: 40px 0; }
+.drink .fm-title{
+  text-align:center; font-family: "Caveat", cursive; font-size: clamp(28px,4vw,42px);
+  color:#f49db0; margin-bottom:18px;
+  font-weight: bold; letter-spacing: 0.08em;
+}
+
+/* キャンバス（正方形） */
+.drink .fm-wrap{
+  position:relative; width:min(880px, 92vw); margin:0 auto;
+  aspect-ratio: 1 / 1;     /* マップは正方形想定。比率を変えるならここを変更 */
+}
+
+
+.drink .fm-stage{ position:absolute; inset:0; z-index:2; }
+
+/* 商品ピン */
+.drink .fm-item{
+  position:absolute; left:var(--x); top:var(--y); transform:translate(-50%,-50%);
+  border:0; background:none; padding:0; cursor:pointer;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.18));
+  transition: transform .18s ease;
+}
+.drink .fm-item img{
+  transform-origin: 50% 65%;
+  transition: transform .18s ease;
+}
+
+/* ホバーでふわっと拡大 */
+.drink .fm-item:hover img{ transform: scale(1.12); }
+
+/* ==== 詳細モーダル ==== */
+.drink .fm-modal{ position:fixed; inset:0; display:none; z-index:1000; }
+.drink .fm-modal[aria-hidden="false"]{ display:block; }
+.drink .fm-modal__backdrop{
+  position:absolute; inset:0; background:rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+}
+
+
+.drink .fm-card{
+  position:absolute; inset:auto; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:min(340px, 86vw);
+  background:#cfe8f6; border:5px solid #7BC9E8; border-radius:40px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.18);
+  padding:22px 16px 16px; text-align:center;
+}
+/* タイトルバッジ */
+.drink .fm-badge{
+  display:inline-block; padding:10px 18px;
+  background:#fff; border:5px solid #7BC9E8; border-radius:30px;
+  font-family:"Caveat", cursive; font-weight:bold; color:#393939; letter-spacing:.0.07em;
+  transform: translateY(-42px);
+}
+
+.drink .fm-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;               /* 少し大きめに */
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #393939; /* 外枠の黒い線 */
+  background: #F99BB2;       /* ピンク色 */
+  color: #393939;            /* × の文字色 */
+  font-size: 20px;
+  line-height: 2;
+  box-shadow: 3px 3px 0 #7BC9E8; /* 右下の水色影 */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.drink .fm-close:hover {
+  background: #fff;
+  color: #393939;
+  box-shadow:none; 
+}
+
+.drink .fm-close:active {
+  transform: translate(4px, 4px);   /* 少し下に押し込む */
+  box-shadow: 2px 2px 0 #95d6f8;    /* 影を短くして押し込んだ感 */
+}
+
+.drink .fm-card__img{ width: 120px; margin:-10px auto 4px; display:block; }
+.drink .fm-card__text{
+  font-weight:bold; line-height:180%; letter-spacing: 0.07em; color:#393939;
+  margin:10px 0 12px; text-align: center;
+}
+.drink .fm-meta{
+  display:inline-block; background:#FFE3EA; border:1px solid #393939; border-radius:10px;
+  padding:10px 16px; text-align:center; font-weight:700; color:#393939; letter-spacing:0.07em;
+}
+.drink .star{ color:#FF8AA5; letter-spacing: 2px;}
+
+.drink .track{
+  display: flex;
+  gap: 30px;                 
+  padding: 0 8px;
+  margin: 0 auto;
+}
+
+.drink .fm-label {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  color: #fff;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.drink .fm-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 6px 18px;          /* ← ラベルの余白 */
+  background-color: #D0A3FF;  /* ← 背景色（好きな色に変更OK） */
+  color: #fff;                /* 文字色 */
+  border-radius: 20px;        /* ← 丸み */
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.fm-label:nth-of-type(1) { background:#c7b4fb; } /* やさしい */
+.fm-label:nth-of-type(2) { background:#F8A9C4; } /* 甘い */
+.fm-label:nth-of-type(3) { background:#ff8ea8; } /* しっかり */
+.fm-label:nth-of-type(4) { background:#94B6FF; } /* 爽やか */
+
+
+/* きらめき用レイヤー（少し大きめにして外側にも出せるように） */
+.drink .sparkle-layer{
+  position: absolute;
+  inset: -40px;             
+  pointer-events: none;     
+}
+
+.drink .sparkle{
+  position: absolute;
+  transform: translate(-50%, -50%) scale(.8);
+  opacity: 0;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.12));
+  animation: twinkle var(--dur,3s) ease-in-out infinite;
+  animation-play-state: paused;      /* 初期は停止 */
+}
+
+
+.drink .sparkle::before{
+  content: '✦';                   
+  font-size: var(--size,500px);
+  color: var(--col, #ffd1e0);
+
+  content: '✩';                   
+  font-size: var(--size,500px);
+  color: var(--col, #ffd1e0);
+
+  content: '✧';                   
+  font-size: var(--size,500px);
+  color: var(--col, #ffd1e0);
+
+  content: '❇';                   
+  font-size: var(--size,500px);
+  color: var(--col, #9fdbf9);
+}
+
+/* セクションが見えている間だけ再生 */
+.drink .sparkle-layer.is-on .sparkle { animation-play-state: running; }
+
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(15deg); }
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 10; }
+  50% { transform: translateY(-10px) rotate(10deg); opacity:5; }
+  100% { transform: translateY(0) rotate(-10deg); opacity: 10; }
+}
+
+
+.drink .flavor {
+  background-color: #FFE6EE;
+  position: relative;
+  z-index: 2; /* セクション全体を前に出す */
+}
+
+/* もこもこ共通 */
+.moko {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 2;   
+
+}
+
+/* 上のもこもこ */
+.moko-top {
+  top: -35px;
+  z-index: 1;
+
+}
+
+/* 下のもこもこ */
+.moko-bottom {
+  bottom: -35px;
+  z-index: 1;
+
+}
+
+/* ーーーーーーーーーーーーーーー
+        イベントページ
+ーーーーーーーーーーーーーーー */
+.event .xmas h2{
+font-size: 64px;
+
+}
+
+.event .first{
+background-position: center;  
+background-color: #EAF9FF;   
+
+}
+
+.event .w1000{
+ background-image: url(../img/ev_fv.png);
+}
+
+
+.event .xmas {
+  position: relative;
+  padding: 80px 0 120px;
+  background: linear-gradient(#ffe7f1 0%, #fff7fb 70%, #fff7fb 20%);
+  overflow: hidden; 
+}
+
+.event .xmas-inner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 飾りアイコン（画像） */
+.event .xmas-icon {
+  position: absolute;
+  width: clamp(100px, 7vw, 40px);
+  z-index: 1;
+  animation: xmas-sway 3s ease-in-out infinite;
+  transform-origin: 50% 0%;  /* 上を支点にゆらゆらさせる */
+}
+
+.event .xmas-icon--left {
+  top: 180px;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.event .xmas-icon--right {
+  top: 150px;
+  right: 15%;
+  animation-delay: 1.2s;
+}
+
+@keyframes xmas-sway {
+  0% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-6px);
+  }
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+}
+
+.event .xmas-lead {
+  font-size: 16px;
+  line-height: 180%;
+  margin-bottom: 32px;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  color: #393939;
+
+}
+
+.event .xmas-lead .red   { color: #F95353; font-weight: 700; }
+.event .xmas-lead .green { color: #7FC598; font-weight: 700; }
+
+/* メインの白枠＋日付＋メニュー */
+.event .xmas-box {
+  position: relative;
+  border: 2px solid #393939;
+  border-radius: 10px;
+  padding: 40px 40px 32px 80px;
+  background: #fff;
+  width: 80%;
+  height: 400px;
+}
+
+.event .xmas-date {
+  position: absolute;
+  left: -40px;
+  bottom:  260px;
+  transform: translateY(-50%);
+  width: 120px;
+  height:120px;
+  border-radius: 50%;
+  border: 2px solid #393939;
+  background: #FFE6EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  line-height: 120%;
+}
+
+.event .xmas-menu {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+  padding-right:40px;
+  margin: auto;
+
+}
+
+.event .xmas-item p {
+width: 220px;
+height: 53px;
+background-image: url(../img/ev_cn_hd.png);
+background-repeat: no-repeat;
+display: flex;
+justify-content: center;
+padding-bottom: 10px;
+color: #393939;
+font-family: "Zen Kaku Gothic New", sans-serif;
+font-weight: bold;
+letter-spacing: 0.07em;
+
+
+}
+
+.event .xmas-item {
+  width: 250px;
+  position: relative; /* ←これ超重要！ */
+  text-align: center;
+}
+
+/* 吹き出し（画像に少し重ねる） */
+.event .xmas-item p {
+  width: 220px;
+  height: 53px;
+  background-image: url(../img/ev_cn_hd.png);
+  background-repeat: no-repeat;
+  position: absolute;          /* ←重ねるために必須 */
+  top: -30px;                  /* 画像にかぶせる位置を調整 */
+  left: 80%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  color: #393939;
+  font-weight: bold;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  letter-spacing: 0.07em;
+}
+
+
+/* -------------------- */
+/* もっと目立つ★キラキラアニメーション */
+/* -------------------- */
+
+.event .xmas-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 星の色バリエーション */
+:root {
+  --star-pink:   #f06ccb;
+  --star-blue:   #6bfa7e;
+  --star-yellow: #fee272;
+  --star-white:  #9085ef;
+}
+
+.event .xmas-stars span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0;
+
+  /* 星のグロー（光のにじみ） */
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+
+  animation: xmas-twinkle-strong 3s infinite ease-in-out;
+}
+
+/* 色別ランダム設定 */
+.xmas-stars span:nth-child(1) { color: var(--star-pink);   }
+.xmas-stars span:nth-child(2) { color: var(--star-blue);   }
+.xmas-stars span:nth-child(3) { color: var(--star-yellow); }
+.xmas-stars span:nth-child(4) { color: var(--star-pink);   }
+.xmas-stars span:nth-child(5) { color: var(--star-white);  }
+.xmas-stars span:nth-child(6) { color: var(--star-blue);   }
+
+ /* 位置も少しランダム */
+.xmas-stars span:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s;   }
+.xmas-stars span:nth-child(2) { top: 10%; right: 25%; animation-delay: .7s; }
+.xmas-stars span:nth-child(3) { top: 32%; left: 45%; animation-delay: .3s; }
+.xmas-stars span:nth-child(4) { top: 18%; right: 10%; animation-delay: 1s; }
+.xmas-stars span:nth-child(5) { top: 5%; left: 55%; animation-delay: .5s; }
+.xmas-stars span:nth-child(6) { top: 28%; right: 35%; animation-delay: 1.4s; }
+
+/* 星が強く輝いて回転しながら消えるアニメーション */
+@keyframes xmas-twinkle-strong {
+  0% {
+    transform: scale(0.4) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(1.4) rotate(20deg);
+    opacity: 30;
+  }
+  50% {
+    transform: scale(0.6) rotate(-20deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.3) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+.event .ev_gn{
+background-image: url(../img/ev_gn_hk.png);  
+background-size: cover;
+background-repeat: no-repeat;
+width: 100%;
+position: relative;
+}
+
+.event .ev_gn h2{
+font-size: 64px;
+
+}
+
+.event .ev_gn_df {
+  display: flex;
+  flex-direction: row;   /* このみのまま row */
+  justify-content: center;   /* 横方向 */
+  align-items: center;       /* ← これで縦が揃う */
+  gap: 100px;                 /* 間隔だけここで調整 */
+}
+
+
+
+.event .ev_gn_hb{
+font-size: 16px;
+color: #fff;
+text-align: center;
+}
+
+
+.event .ev_gn_km{
+font-size: 20px;
+color: #fff;
+text-align: center;
+margin-bottom: 30px;
+
+}
+
+
+.ev_gn .kira1 {
+ position: absolute;
+ top: 30vh;  /* 好きな位置に調整してOK */
+ right: 15%;
+}
+
+.ev_gn .kira2 {
+ position: absolute;
+ top: 15vh; /* 好きな位置に調整してOK */
+ left: 15%;
+}
+
+/* きらきらアニメーション */
+@keyframes kirakira {
+ 0% {
+transform: scale(1);
+ opacity: 1;
+ }
+ 50% {
+ transform: scale(1.4);
+ opacity: 0.5;
+ }
+ 100% {
+ transform: scale(1);
+ opacity: 1;
+ }
+}
+
+/* 星にアニメーション付ける */
+.ev_gn .kira1,
+.ev_gn .kira2 {
+ animation: kirakira 2.5s ease-in-out infinite;
+ transform-origin: center;
+}
+
+/* 画像を包む箱：バッジの基準になる */
+.event .ev_gn_imgbox {
+  position: relative;   /* ★これ！ */
+  display: inline-block;
+}
+
+/* 画像はブロックにして余計なスキマを消す */
+.event .ev_gn_imgbox img {
+  display: block;
+}
+
+/* 丸バッジ（既存の ev_gn_badge に位置指定を足す） */
+.event .ev_gn_badge {
+  width: 120px;
+  height: 120px;
+  background-color: #FFE3EA;
+  border: 2px solid #393939;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  color: #393939;
+  font-weight: bold;
+
+  /* ▼ここから重ねるための指定 ▼ */
+  position: absolute;
+  top: -40px;      /* 上にはみ出させる量 調整してOK */
+  left: -40px;     /* 左にはみ出させる量 調整してOK */
+  z-index: 2;
+  /* もし前に margin-right: 780px; を付けていたら削除してね */
+}
+
+/* =========================
+   イベントガチャ セクション
+   ========================= */
+
+.event .ev_gn {
+  padding: 80px 0 120px;
+}
+
+/* 行レイアウト（PC） */
+.event .ev_gn_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin-top: 80px;
+}
+
+/* 画像まわり */
+.event .ev_gn_imgWrap {
+  position: relative;
+}
+
+.event .ev_gn_imgWrap img {
+  display: block;
+  width: 360px;
+  max-width: 100%;
+  border-radius: 24px;
+}
+
+/* 丸バッジ（既存の ev_gn_badge に位置指定を足す） */
+.event .ev_gn_badge {
+  width: 120px;
+  height: 120px;
+  background-color: #FFE3EA;
+  border: 2px solid #393939;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  color: #393939;
+  font-weight: bold;
+
+  /* ▼ここから重ねるための指定 ▼ */
+  position: absolute;
+  top: -40px;      /* 上にはみ出させる量 調整してOK */
+  left: -40px;     /* 左にはみ出させる量 調整してOK */
+  z-index: 2;
+  /* もし前に margin-right: 780px; を付けていたら削除してね */
+}
+
+    /* 背景の命令（方眼紙バージョン） */
+  .event .ev_sk_hk{
+    background-image: linear-gradient(#FFE3EA 1px, transparent 1px), linear-gradient(90deg, #FFE3EA 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;
+}
+
+.event .ev_sk_hk h2{
+font-size: 64px;
+
+}
+
+/* カード全体の並び */
+.event .taste-cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* 丸いバッジ */
+.event .taste-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -40%);
+  
+  background-color: #FFE6EE;
+  border: 2px solid #393939;
+  border-radius: 50%;
+  
+  width: 120px;     /* バッジの大きさ */
+  height: 120px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  color: #393939;
+  
+  text-align: center;
+}
+
+/* ==========================
+   TastingNight カード
+   ========================== */
+
+/* カード全体を横並び（PC） */
+.event .taste-cards {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+/* 1枚のカード */
+.event .taste-card {
+  width: 360px;
+  background-color: #fff;
+  border-radius: 18px;
+  border: 2px solid #333333;
+  padding: 40px 40px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 写真部分 */
+.event .taste-card-img {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.event .taste-card-img img {
+  width: 100%;
+  height: 300px;        /* ★好きな高さに合わせてね */
+  object-fit: cover;    /* ★中央を基準に綺麗にトリミング */
+  display: block;
+  border-radius: 10px;
+}
+
+/* テキスト部分 */
+.event .taste-card-body {
+  width: 100%;
+  text-align: center;
+}
+
+/* タイトル（ピンクのラベル） */
+.event .taste-card-title {
+  display: inline-block;
+  padding: 20px 24px 20px;
+  background-color: #FFE3EA;
+  border-radius: 999px;
+  border: 3px solid #f99bb2;
+  font-size: 18px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  line-height: 0.07em;  /* 指定どおり 0.07em */
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* 本文テキスト（ここは普通の行間にして重なりを防ぐ） */
+.event .taste-card-text {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        みなみ
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ーーーーーーーーーーーーーーー
+        トップページ
+ーーーーーーーーーーーーーーー */
+/* TOP→コンセプト */
+.top .concept{
+    /* 背景の命令（グラデーション） */
+    background-image: linear-gradient(0deg, #ffffff, #eff5f9);
+}
+
+.top .concept .w1200{
+    position: relative;
+}
+
+.top .concept .txt{
+    text-align: center;
+    line-height: 250%;
+    margin-bottom: 50px;
+}
+
+    /* イラストここから */
+.top .concept .cheers {
+    display: flex;     
+    align-items: flex-end; 
+    gap: 16px;
+    position: absolute;
+    top:10vh;
+    right: 10%;
+}
+
+.top .concept .cheers img {
+    transform-origin: center bottom;
+    animation: sway 1.8s ease-in-out infinite;
+}
+
+.top .concept .cheers img.right {
+    animation-name: sway-rev;
+}
+
+.top .concept .under {
+  transform-origin: center bottom;
+  animation: sway 1.8s ease-in-out infinite;
+  animation-delay: 0.4s; 
+  position: absolute;
+  left: 10%;
+  bottom: 10vh;
+}
+
+@keyframes sway {
+    0%   { transform: rotate(-5deg); }
+    50%  { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+}
+
+@keyframes sway-rev {
+    0%   { transform: rotate(5deg); }
+    50%  { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+    /* イラストここまで */
+
+/* TOP→フード */
+.top .food{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#d4e5ec 1px, transparent 1px), linear-gradient(90deg, #d4e5ec 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;    
+    padding-bottom: 10%;
+}
+
+.top .food .insta{
+    background-color: #fff;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    border: 2px solid #000;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.top .food .insta .left{
+    width: 100%;
+    height: auto;
+    border-radius: 4px 0 0 4px;
+}
+
+.top .food .insta .left img{
+    border-radius: 4px 0 0 4px;
+}
+
+.top .food .insta .right{
+    padding: 3vh 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.top .food .name{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+}
+
+.top .food .logo{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* TOP→ドリンク */
+.top .drink{
+    background-color: #FFE6EE;
+    position: relative;
+    padding-bottom: 10vh;
+}
+
+.top .drink .wave1{
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
+.top .drink .wave2{
+    position: absolute;
+    top: 100%;
+    width: 100%;    
+    z-index: 10;
+}
+
+    /* フレーバー診断ここから */
+.top .flavor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-direction: row;
+    margin-bottom: 10vh;
+}
+.top .flavor .box {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    align-items: center;
+}
+.top .flavor input[type="radio"] {
+    display: none;
+}
+.top .flavor .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vh 24px;
+    text-align: left;
+}
+.top .flavor label {
+    position: relative;
+    padding-left: 28px; 
+    cursor: pointer;
+    font-size: 15px;
+    color: #000;
+}
+.top .flavor label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid #333; 
+    border-radius: 50%;
+    background-color: #fff; 
+    transition: all 0.3s ease;
+}
+.top .flavor label.active::before {
+    border-color: #f48ba6;    
+    background-color: #f48ba6; 
+}
+.top .flavor .image {
+    position: relative;
+    width: 450px;
+    height: 350px;
+}
+.top .flavor img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.top .flavor label{
+    color: #393939;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: 0.07em;    
+}
+    /* フレーバー診断ここまで */
+
+/* TOP→イベント */
+.top .event{
+    background-color: #3F374C;
+    position: relative;
+}
+
+    /* 電光掲示板ここから */
+.top .event .board-wrap {
+    width: 80%;
+    margin: 35px 10%;
+    position: relative;
+}
+.top .event .bar {
+    position: absolute;
+    top: -95px;
+    width: 16px;
+    height: 95px;
+    background: linear-gradient(#fefefe, #dcdcdc);
+    border: 2px solid #000;
+    border-radius: 8px 8px 0 0;
+}
+.top .event .bar.left {
+    left: 15%;
+}
+.top .event .bar.right {
+    right: 15%;
+}
+.top .event .board {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+}
+.top .event .panel {
+    background: #0b1116;
+    border-radius: 12px;
+    border: 6px solid rgba(0,0,0,0.6);
+    overflow: hidden;
+    position: relative;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.top .event .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 8px 8px;
+    pointer-events: none;
+}
+.top .event .marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+}
+.top .event .text {
+    display: inline-block;
+    padding-right: 3rem;
+    font-size: clamp(1rem, 3vw, 2rem);
+    font-weight: bold;
+    color: #ff7b83;
+    text-shadow: 0 0 6px rgba(255,120,130,0.3);
+    animation: scroll 15s linear infinite;
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+  /* 電光掲示板ここまで */
+
+.top .event .txt{
+    color: #fff;
+    text-align: center;
+}
+
+.top .event .wave4{
+    position: absolute;
+    top: 100%;
+    width: 100%;    
+    z-index: 10;
+}
+
+.top .event .kira1{
+    position:absolute;
+    top:40vh;
+    right: 20%;
+}
+
+.top .event .kira2{
+    position:absolute;
+    top: 50vh;
+    left: 20%;
+}
+/* きらきらアニメーション */
+@keyframes kirakira {
+ 0% {
+transform: scale(1);
+ opacity: 1;
+ }
+ 50% {
+ transform: scale(1.4);
+ opacity: 0.5;
+ }
+ 100% {
+ transform: scale(1);
+ opacity: 1;
+ }
+}
+
+/* 星にアニメーション付ける */
+.top .event .kira1,
+.top .event .kira2 {
+ animation: kirakira 2.5s ease-in-out infinite;
+ transform-origin: center;
+}
+    /* イベントスライダーここから */
+.top .eventbox {
+    position: relative;
+    width: 330px;
+    height: 510px;
+    margin: 50px auto;
+    perspective: 1000px;
+    overflow: visible;
+}
+.top .slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.top .slide {
+    width: 330px;
+    height: 510px;
+    flex-shrink: 0;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease, z-index 0s 0.5s;
+    background-image: url(../img/to_card.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+.top .slide .top{
+    font-weight: 700;
+}
+.top .slide h3{
+    text-align: center;
+    margin-bottom: 8px;
+}
+.top .slide .under{
+    line-height: 140%;
+    text-align: center;
+}
+.top .slide a:link h3{text-decoration: underline; color: #393939;}
+.top .slide a:visited h3{text-decoration: underline; color: #393939;}
+.top .slide a:hover h3{text-decoration: underline; color: #a35266;}
+.top .slide a:active h3{text-decoration: underline; color: #a35266;}
+.top .slide.left {
+    transform: translateX(-350px) rotateY(5deg) scale(0.8);
+    z-index: 1;
+}
+.top .slide.center {
+    transform: translateX(0px) rotateY(0deg) scale(1);
+    z-index: 3;
+}
+.top .slide.right {
+    transform: translateX(350px) rotateY(-5deg) scale(0.8);
+    z-index: 2;
+}
+.top button.prev, .top button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+}
+.top button.prev, .top button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10; 
+}
+.top button.prev { left: -25px; } 
+.top button.next { right: -25px; }
+    /* イベントスライダーここまで */
+
+/* TOP→アクセス */
+.top .access{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#d4e5ec 1px, transparent 1px), linear-gradient(90deg, #d4e5ec 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;   
+    padding-bottom: 10vh;     
+}
+
+.top .access .sub{
+    margin-bottom: 15vh;
+}
+
+.top .access .box{
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    gap: 5%;
+    justify-content: space-between;
+    position: relative;
+}
+
+.top .access .box div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+}
+
+.top .access .tag{
+    color: #fff;
+    font-size: 48px;
+    font-weight: 800;
+    -webkit-text-stroke: 2px #393939;
+}
+
+.top .access .txt1{
+    background-image: url(../img/to_ac_txt1.png);
+    width: 220px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    position: absolute;
+    top:15vh;
+    left: 27%;
+}
+
+.top .access .txt2{
+    background-image: url(../img/to_ac_txt2.png);
+    width: 260px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    position: absolute;
+    top:20vh;
+    right: -3%;
+}
+
+.top .access .bigbox {
+    cursor: pointer;
+    max-width: 400px;
+    max-height: 300px;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.top .access .bigbox img {
+    height: auto;
+    transition: transform .6s ease; 
+}
+
+.top .access .bigbox:hover img {
+    transform: scale(1.1); 
+}
+
+/* ーーーーーーーーーーーーーーー
+        フードページ
+ーーーーーーーーーーーーーーー */
+/* フード→ファーストビュー */
+.food .first{
+    background-image: linear-gradient(0deg, #e9f9ff, #ffffff);
+}
+
+.food .first .w1000{
+    background-image: url(../img/fo_first.png);
+}
+
+/* フード→流れ */
+.food .flow{
+    background-color: #E9F9FF;
+    position: relative;
+}
+
+.food .flow .w1200{
+    display: flex;
+    flex-direction: column;
+}
+
+.food .flow .right{
+    display: flex;
+    align-items: center;
+}
+
+.food .flow .left{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.food .flow .image{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food .flow .txt{
+    width: 50%;
+    padding: 5%;
+}
+
+.food .flow .txt .bold{
+    font-weight: 700;
+    color: #cc2d55;
+}
+
+.food .flow .no{
+    color: #fff;
+    font-size: 96px;
+    font-weight: 900;
+    -webkit-text-stroke: 2px #393939;
+    vertical-align: middle;
+}
+
+.food .flow p{
+    padding: 5%;
+}
+
+.food .flow .wave1{
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 10;
+}
+
+/* フード→ランキング */
+.food .rank{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#d4e5ec 1px, transparent 1px), linear-gradient(90deg, #d4e5ec 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;  
+    padding: 10vh 5%;    
+}
+
+.food .rank .sub{
+    margin-bottom: 10vh;
+}
+
+.food .one{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+
+.food .two{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    margin-bottom: 5vh;
+}
+
+.food .txt1{
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    z-index: 10;
+    background-image: url(../img/fo_rank_txt1.png);
+    background-repeat: no-repeat;
+    width: 140px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.food .txt2{
+    position: absolute;
+    top: 30%;
+    right: 20%;
+    z-index: 10;
+    background-image: url(../img/fo_rank_txt2.png);
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.food .txt3{
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    z-index: 10;
+    background-image: url(../img/fo_rank_txt3.png);
+    background-repeat: no-repeat;
+    width: 330px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    padding-top: 18px;
+}
+
+.food .txt4{
+    position: absolute;
+    top:25%;
+    right: 0;
+    z-index: 10;
+    background-image: url(../img/fo_rank_txt4.png);
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.food .rank h3{
+    color: #476A96;
+    font-size: 20px;
+}
+
+.food .rank .no{
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.food .three{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    margin-bottom: 5vh;
+}
+
+.food .four{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+}
+
+.food .three div,.food .four div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food .bigbox {
+    display: inline-block;   
+}
+
+.food .bigbox img {
+    height: auto;
+    transition: transform .6s ease; 
+
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;     
+}
+
+.food .bigbox:hover img {
+    transform: scale(1.05); 
+}
+
+
+@media(width<768px){
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            共通
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+h2{
+    font-size: 70px;
+}
+h3{
+    font-size: 20px;
+}
+p{
+    font-size: 13px;
+}
+.sub{
+    font-size: 24px;
+}
+.btn{
+    font-size: 16px;
+}
+.jap{
+    font-size: 24px;
+}
+.w1000{
+    height: 200px;
+}
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            共通追加部分
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* フッター */
+footer nav{
+    width: 90%;
+}
+
+footer li{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+footer .sns{
+    right: 0;
+    bottom: 5vh;
+}
+
+footer .sns img{
+    width: 70%;
+    height: auto;
+}
+
+/* フッターの上のセクション */
+
+
+    .sa_mt {
+        background-size: 40%;
+        background-position: right 8% bottom 2%;
+    }
+
+
+
+
+    .sa_mt .w1200 > div {
+        gap: 20px;     /* スマホ時の隙間 */
+    }
+
+
+/* =====ハンバーガーメニュー ===== */
+
+header ul{ display:none; }     /* 既存PCナビは隠す */
+.nav-toggle{ display:flex; }   /* ハンバーガー表示 */
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        まおさん
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* ーーーーーーーーーーーーーーー
+        FV
+ーーーーーーーーーーーーーーー */
+
+ .fv{ aspect-ratio: 390 / 300; /* 縦を短くした比率 */ }
+  .fv__mark{ left: 34%; top: 20%; width: clamp(150px, 36vw, 230px); }
+  .fv__can{ width: clamp(150px, 40vw, 200px); }
+  .fv__can--left { left: 25%; top: 60%; rotate:-16deg; }
+  .fv__can--right{ right: 25%;  top: 60%; rotate: 16deg; }
+  .fv__spark--1{ left: 20%; top: 50%; }
+  .fv__spark--2{ left: 60%; top: 50%; }
+  .fv__cta{ right: 8%; top: 30%; width: clamp(140px, 20vw, 200px); }
+  .fv__cta h3 {
+    font-size: clamp(10px, 3.5vw, 14px); /* ←SP用に小さめのサイズ */
+    line-height: 1.3;}
+
+  .fv__cheers{ right: 7%; top: 59%; width: clamp(50px, 20vw, 75px); }
+
+ .fv__bunting {
+    transform: scale(1.5)/* 150%に拡大 */ translateX(-10%); /* ←左に10%ずらす */
+    transform-origin: center top; /* 拡大の基準を上中央にする（位置がズレにくい） */
+  }
+
+
+
+
+/* 動きが苦手な人への配慮 */
+.fv__can, .fv.is-cheers .fv__can--left, .fv.is-cheers .fv__can--right,
+.fv__spark{ animation: none !important; }
+
+
+.fv__kirakira--01 { top: 55%; left: 10%; }
+.fv__kirakira--02 { top: 25%; left: 7%; }
+.fv__kirakira--06 { top: 35%; left: 25%; }
+.fv__kirakira--03 { top: 60%; right: 5%; }
+.fv__kirakira--04 { top: 20%; right: 10%; }
+.fv__kirakira--05 { top: 30%; right: 25%; }
+
+
+/* マウスがあるデバイスだけ停止を許可（スマホは無効） */
+
+.fv__cta:hover::before{
+animation-play-state: paused;}
+
+
+
+/* ーーーーーーーーーーーーーーー
+        アバウトページ
+ーーーーーーーーーーーーーーー */
+
+/* 吹き出しタイトル部分（必要なら調整） */
+  .kodawari .w1200{
+  background-image: url("../img/co_hukidashi_os_sp.png"); /* ←新しい画像 */
+  background-size: contain;
+  background-position: center;
+padding-bottom: 10px;}
+
+  /* 画像＋テキストを縦並びに */
+  .co_kodawari {
+  flex-direction: column;     /* ← 横並び → 縦並び */
+  align-items: center;        /* 中央寄せ */
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  }
+
+    /* 画像＋テキストを縦並びに */
+  .co_kodawari-02 {
+  flex-direction: column-reverse; /* ←これだけで順番ひっくり返る */
+  align-items: center;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;}
+
+  /* 上の丸い写真 */
+  .co_kodawari_huki {width: 80%;max-width: 360px; /* 大きくなりすぎ防止 */ }
+  /* テキストブロック */
+  .co_kodawari_box {text-align: center;}
+  .co_kodawari_box p { width: 400px;    /* 固定幅を解除 */ margin: 20px auto;}
+  .co_line {width: 70%;max-width: 300px;}
+
+
+
+/* ーーーーーーーーーーーーーーー
+        アクセスページ
+ーーーーーーーーーーーーーーー */
+
+ .ac-shop-all{
+    gap: 20px; /* 間隔も少し狭める */}
+
+  /* ボックス（背景付きの大枠） */
+  .ac-shop-box01,
+  .ac-shop-box02{
+  width: 300px;    /* ← PCの550px → SP用に小さく */
+  height: 500px;   /* ← 高さも縮小 */
+  background-size: contain; /* 比率そのまま縮小 */}
+
+  /* 吹き出しテキスト部分 */
+  .ac-huki-tx01,
+  .ac-huki-tx02{
+  width: 300px;       /* ボックスに合わせる */
+  margin-top: 150px;   /* 上位置も調整 */
+  padding-top: 4px;
+  padding-bottom: 12px;
+  font-size: 14px;
+  background-size: contain;
+  font-size: 12px;}
+
+  /* 店舗写真 */
+  .ac-shop-ph{
+  width: 200px;   /* 小さく */
+  margin-top: 15px;}
+
+  /* 店舗名 (#下北沢店) */
+  .ac-shop-name{
+  font-size: 28px;                 /* 小さく */
+  -webkit-text-stroke: 1px #393939; /* 枠線も少し細く */}
+
+  /* =====アクセス→どっちに行く？====== */
+
+.ac-choose{padding: 30px 0;}
+.ac-choose-inner{gap: 20px;}
+.ac-choose-arrow{width: 50px; }
+.ac-circle-wrap{width: 220px;height: 220px;}
+.ac-kanpai{width: 80px;}
+
+
+
+/* =====アクセス→下北沢店・高円寺店====== */
+
+ /* セクション全体 */
+.ac-map .w1200{
+width: 100%;
+margin: 0 auto;
+padding: 0 16px;          /* 画面左右に少し余白 */
+position: relative;   /* ←これ！絶対位置の基準になる */ }
+
+  /* カード本体：縦長レイアウト用にパディング調整 */
+  .ac-map-card01{
+background: url("../img/ac-mapbk-01-sp.png") no-repeat center / contain;
+padding: 200px 80px 100px;
+margin-top: -50px;}
+
+.ac-map-card02{
+background: url("../img/ac-mapbk-02-sp.png") no-repeat center / contain;
+padding: 200px 80px 100px;
+margin-top: -50px;}
+
+  /* ピンはカード中央上あたりに */
+.ac-map-pin{
+top: 70px;
+left: 50%;
+transform: translateX(-50%);
+width: 56px;}
+
+  /* 中身は縦並びに */
+.ac-map-inner{
+flex-direction: column;   /* ← ここがポイント */
+align-items: center;
+gap: 40px;
+width: 100%;
+margin-top: 0px;
+margin-bottom: 80px;}
+
+  /* 地図エリア */
+.ac-map-embed{
+flex: 0 0 auto;
+width: 100%;
+max-width: 360px;
+height: auto;}
+
+.ac-map-embed iframe{
+width: 100%;
+height: 220px;}
+
+  /* テキストエリア（住所など） */
+.ac-map-info{
+width: 100%;
+max-width: 360px;
+background-color: transparent;  /* chartreuse はPCだけにしたい場合 */
+text-align: left;}
+
+.ac-map-text{
+font-size: 13px;
+line-height: 1.6;}
+
+  /* バッジ：SPでは少し小さくして、カードの右下に寄せ直す */
+ .ac-badge{
+position: absolute;
+bottom: 0px;  /* カード下にはみ出させる */
+right: 150px;
+width: 150px;
+height: auto;}
+
+.ac-badge p{
+font-size: 10px;
+line-height: 1.4;}
+
+.ac-bg-blue{
+color: #7BC9E8;
+font-size: 12px;
+font-weight: 600;}
+
+.ac-bg-pink{
+color: #F99BB2;
+font-size: 12px;
+font-weight: 600;}
+
+
+
+/* ーーーーーーーーーーーーーーー
+        よくある質問ページ
+ーーーーーーーーーーーーーーー */
+
+ /* 全体の横幅をスマホにフィット */
+  .fa-bk {
+  width: 90%;
+  padding: 20px 16px; } 
+
+    /* 角丸背景の余白・丸み調整 */
+  .fa-bk::before {
+  inset: 10px;
+  border-radius: 40px;
+  background-size: 40px 40px;}
+
+
+  /* 見出し（吹き出し） */
+  .fa-huki-tx01 {
+  width: 100%;
+  margin-top: 40px;
+  padding-top: 14px;
+  padding-bottom: 30px;
+  background-size: contain;  /* 画像をスマホ用に縮小 */}
+
+   /* FAQリスト */
+  .faq-list {
+  max-width: 100%;
+  margin-top: 30px;
+  text-align: center;}
+
+   /* FAQリスト */
+  .faq-list {
+  max-width: 100%;
+  margin-top: 30px;
+  text-align: center;}
+  
+    /* 質問エリア */
+  .faq-question {
+  padding: 16px;
+  font-size: 16px;}
+
+    /* 回答エリア */
+  .faq-answer {
+  padding: 16px;
+  flex-direction: column; /* スマホでは縦並び */
+  gap: 12px;}
+
+   /* Qマーク・Aマーク・アイコン系を少し小さく */
+  .faq .q-icon,
+  .faq .toggle-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  margin-right: 10px;
+  box-shadow: 2px 2px 0 #7BC9E8; }
+
+    .faq .icon-a{
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  margin-right: 10px;
+  box-shadow: 2px 2px 0 #F99BB2; }
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        かやねさん
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ーーーーーーーーーーーーーーー
+        ドリンクページ
+ーーーーーーーーーーーーーーー */
+
+  .can .viewport {
+    width: 100%;
+    max-width: 250px;      
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .can .viewport .track {
+    display: flex;
+    transition: transform 0.4s ease;
+    gap: 0;               
+  }
+
+  .can .card {
+    flex: 0 0 100%;
+    max-width: 50%;
+    margin: 0 auto;
+    height: 50%;
+  }
+
+  .can .carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .can .carousel .nav.prev {
+    left: -20px;
+  }
+  .can .carousel .nav.next {
+    right: -20px;
+  }
+
+
+  .viewport {
+    overflow: hidden;
+    width: 100%;
+    padding: 0;   
+    margin: 0 auto;
+  }
+
+  .track .card {
+    min-width: 107%;
+    max-width: 100%;     
+  }
+
+  .track {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel button {
+    transform: translateY(-50%);
+  }
+
+
+
+  .card {
+    padding: 20px 15px;
+    height: auto;            
+  }
+
+  .card_badge {
+    font-size: 18px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .can .card__img {
+    width: 50%;               
+    max-width: 150px;
+    margin: 0 auto 10px;     
+  }
+
+
+  .card_text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  
+  .card_meta {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+
+
+   .card__img {
+    width: 50%;              
+    max-width: 150px;
+    margin: 0 auto 10px;      
+
+}
+  .can{
+  margin-bottom: -50px; 
+  }
+
+
+  /* マップ全体（背景＋ボトルまとめて）を少し小さく */
+  #flavor .fm-wrap {
+    width: 80vw;          /* ← 元は 92vw くらいなので、ここで全体を小さく */
+    max-width: 800px;     /* タブレットでも大きくなりすぎないように上限 */
+    margin: 0 auto;       /* 中央寄せ */
+  }
+
+}
+@media (max-width: 768px) {
+
+  /* 瓶画像を小さくする：scale を下げる */
+  #flavor .fm-item img {
+    transform: scale(0.65);  /* ← まずは 0.65 推奨。大きければ0.55に */
+  }
+
+  /* 位置ずれ調整（ズレたら微調整） */
+  #flavor .fm-item {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+
+ .drink .fm-label{
+ font-size: 13px; 
+ padding: 3px 10px;
+ }
+
+
+/* 瓶画像を小さくする：scale を下げる */
+ #flavor .fm-item img {
+ transform: scale(0.55); /* ← まずは 0.65 推奨。大きければ0.55に */
+transition: transform 0.3s;
+ }
+
+ /* 位置ずれ調整（ズレたら微調整） */
+ #flavor .fm-item {
+ transform: translate(-50%, -50%) scale(0.6);
+ }
+
+ /* ホバーしたとき（少しだけ大きく） */
+ #flavor .fm-item:hover img {
+ transform: scale(0.65);  /* 好きな数字にしてOK（0.7〜0.8くらいおすすめ） */
+ }
+
+ .drink .fm-label{
+ font-size: 10px; 
+ padding: 3px 8px;
+ }
+
+ #flavor .fm-item {
+ transform: translate(-50%, -50%) scale(0.6);
+}
+
+}
+
+/* ーーーーーーーーーーーーーーー
+        イベントページ
+ーーーーーーーーーーーーーーー */
+
+@media (max-width: 768px) {
+
+  /* 白い枠の箱 */
+  .event .xmas-box {
+    width: 90%;
+    height: auto;              /* ← 高さは中身に合わせる */
+    margin: 40px auto 0;
+    padding: 60px 15px 30px;   /* 上を多めにして丸の日付分のスペースを確保 */
+  }
+
+  /* 日付の丸 */
+  .event .xmas-date {
+    width: 90px;
+    height: 90px;
+    font-size: 16px;
+
+    position: absolute;
+    top: 0;                    /* 上中央に配置 */
+    left: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 飲み物とケーキの並び */
+  .event .xmas-menu {
+    flex-direction: column;    /* 縦並び */
+    align-items: center;       /* 中央寄せ */
+    gap: 40px;                 /* すき間は少し狭める */
+    margin-top: 30px;
+    padding-left: 30px;
+  }
+
+  /* それぞれのカード（画像＋吹き出し）の最大幅 */
+  .event .xmas-item {
+    max-width: 260px;
+    width: 100%;
+  }
+
+  /* 吹き出しの幅もスマホ用に少し狭く */
+  .event .xmas-item p {
+    max-width: 220px;
+    font-size: 13px;
+  }
+  .event .xmas-icon--left {
+  top: 180px;
+  left: 5%;
+  animation-delay: 0s;
+  width: 70px;
+}
+
+.event .xmas-icon--right {
+  top: 150px;
+  right: 2%;
+  animation-delay: 1.2s;
+  width: 70px;
+}
+
+}
+
+@media(max-width:768px){
+    .event .ev_gn_km{
+    font-size: 18px;
+
+    }
+}
+
+@media (max-width: 768px) {
+
+  /* どちらの段も画像→文章 → 縦並び */
+  .event .ev_gn_row,
+  .event .ev_gn_row.ev_gn_row--reverse {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* 並び順を画像→テキストに統一 */
+  .event .ev_gn_imgWrap {
+    order: 1;
+  }
+
+  .event .ev_gn_text {
+    order: 2;
+    max-width: 320px;
+  }
+
+  /* 画像を少し小さく */
+  .event .ev_gn_imgWrap img {
+    width: 80%;
+    max-width: 350px;
+    margin: auto;
+  }
+
+  /* バッジも小さく & 近づける */
+  .event .ev_gn_badge {
+    width: 90px;
+    height: 90px;
+    font-size: 14px;
+    left: -5px;
+    top: -30px;
+  }
+}
+@media (max-width: 768px) {
+
+  /* カードを縦並びに */
+  .event .taste-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+  }
+
+  .event .taste-card {
+    width: 100%;
+    max-width: 370px;
+    margin-bottom: 50px;
+  }
+
+  .event .taste-card-img  img{
+  height: 80%;
+  margin-bottom: 12px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .event .taste-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .event .taste-badge {
+    position: static;       /* カードの上に普通に置く */
+    transform: none;
+    margin-bottom: 16px;
+    width: 100px;
+    height: 100px;
+    font-size: 14px;
+  }
+
+
+  .event .taste-title {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .event .taste-heading h2 {
+    font-size: 30px;
+  }
+
+  .event .taste-noren {
+    width: 110px;
+  }
+
+  .event .taste {
+    padding: 60px 0;
+    background-size: 60px 60px; /* チェックを少し細かく */
+  }
+
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        みなみ
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ーーーーーーーーーーーーーーー
+        トップページ
+ーーーーーーーーーーーーーーー */
+
+@media (max-width: 768px) {
+/* TOP→コンセプト */
+.top .concept .txt br{
+    display: none;
+}
+
+    /* イラストここから */
+.top .concept .cheers {
+    display: none;
+}
+
+.top .concept .under {
+    display: none;
+}
+    /* イラストここまで */
+
+/* TOP→フード */
+.top .food .insta{
+    flex-direction: column;
+}
+
+.top .food .insta .left{
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top .food .insta .left img{
+    border-radius: 4px 4px 0 0;
+}
+
+.top .food .insta .right{
+    gap: 5vh;
+    padding-bottom: 5vh;
+}
+
+.top .food .name{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+}
+
+.top .food .logo{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* TOP→ドリンク */
+.top .drink{
+    padding-bottom: 5vh;
+}
+
+    /* フレーバー診断ここから */
+.top .flavor {
+    flex-direction: column;
+    gap: 5vh;
+    margin-bottom: 5vh;
+}
+
+.top .flavor .options {
+    gap: 2vh 20px;
+}
+    /* フレーバー診断ここまで */
+
+/* TOP→イベント */
+.top .event{
+    background-color: #3F374C;
+    position: relative;
+}
+
+    /* 電光掲示板ここから */
+.top .event .board-wrap {
+    width: 90%;
+}
+
+.top .event .bar {
+    height: 60px;
+    top: -60px;
+}
+  /* 電光掲示板ここまで */
+
+.top .event .kira1{
+    display: none;
+}
+
+.top .event .kira2{
+    top: 35vh;
+    left: 5%;
+}
+
+.top .event .txt{
+    color: #fff;
+    text-align: center;
+}
+
+.top .event .txt br{
+    display: none;
+}
+
+/* TOP→アクセス */
+.top .access{  
+    padding-bottom: 10vh;     
+}
+
+.top .access .sub{
+    margin-bottom: 8vh;
+}
+
+.top .access .box{
+    flex-direction: column;
+    gap: 8vh;
+}
+
+.top .access .box div{
+    gap: 3vh;
+}
+
+.top .access .tag{
+    font-size: 30px;
+    -webkit-text-stroke: 1.5px #393939;
+}
+
+.top .access .txt1{
+  font-size: 16px;
+    top:15vh;
+    left: 50%;
+}
+
+.top .access .txt2{
+    font-size: 16px;
+    top:85vh;
+    right: 0;
+}
+
+/* ーーーーーーーーーーーーーーー
+        フードページ
+ーーーーーーーーーーーーーーー */
+/* フード→ファーストビュー */
+/* .food .first h2{
+    background-size: 73%;
+    padding-bottom: 25px;
+}
+
+.food .first .sub{
+    border: 1px solid #000;
+    background-size: 74.5%;
+    padding-bottom: 14px;
+    padding-right: 108px;
+} */
+/* フード→流れ */
+.food .flow{
+    padding-bottom: 10vh;
+}
+
+.food .flow .right{
+    flex-direction: column;
+}
+
+.food .flow .left{
+    flex-direction: column;
+}
+
+.food .flow .image{
+    width: 90%;
+}
+
+.food .flow .txt{
+    width: 100%;
+}
+
+/* フード→ランキング */
+.food .rank{
+    /* 背景の命令（方眼紙バージョン） */
+    background-image: linear-gradient(#d4e5ec 1px, transparent 1px), linear-gradient(90deg, #d4e5ec 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #fff;  
+    padding: 10vh 5%;    
+}
+
+.food .one{
+    margin-bottom: 5vh;
+    width: 90%;
+}
+
+.food .two{
+    flex-direction: column;
+    gap: 5vh;
+    width: 80%;
+}
+
+.food .txt1{
+    left: 10%;
+    background-size: 90%;
+    padding-right: 15px;
+}
+
+.food .txt2{
+    top: 25%;
+    right: 0;
+    background-size: 90%;
+    padding-right: 15px;
+}
+
+.food .txt3{
+    top: 33%;
+    background-size: 90%;
+    padding-right: 30px;
+}
+
+.food .txt4{
+    top:65%;
+    background-size: 90%;
+    padding-right: 25px;
+}
+
+.food .rank h3{
+    font-size: 25px;
+}
+
+.food .rank .no{
+    font-size: 60px;
+}
+
+.food .three{
+    flex-direction: column;
+    gap: 3vh;
+    margin-bottom: 3vh;
+}
+
+.food .four{
+    width: 100%;
+    flex-direction: column;
+    gap: 3vh;
+    margin-bottom: 3vh;
+}
+}
+

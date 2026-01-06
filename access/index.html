@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<meta charset="utf-8">
+<title>ACCESS｜YOI</title>
+<link href="../css/reset.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+
+<!-- Googleフォント（Zen Kaku Gothic NewとCaveat） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- ビューポート -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--jQuery本体-->
+<script src="../js/jquery-1.11.2.min.js"></script>
+
+<!--ready関数-->
+<script>
+$(function(){
+
+});
+</script>
+
+</head>
+
+<body>
+<!-- 下層ページ→ヘッダー -->
+<header>
+  <a href="../index.html"><img class="he-logo" src="../img/fv-YOIlogo.png" alt="YOIロゴ" width="100" height="auto"></a>  
+  
+  <nav class="header__nav">
+    <ul>
+      <a class="nav_btn" href="../concept/index.html"><li>Concept</li></a>
+      <a class="nav_btn" href="../drink/index.html"><li>Drink</li></a>
+      <a class="nav_btn" href="../food/index.html"><li>Food</li></a>
+      <a class="nav_btn" href="../faq/index.html"><li>FAQ</li></a>
+      <a class="nav_btn" href="../access/index.html"><li>Access</li></a>
+    </ul>
+  </nav>
+
+  <!-- ✅ ハンバーガーアイコン（SPで表示） -->
+<button class="nav-toggle" aria-label="メニュー">
+  <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--mid"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--bot"></span>
+</button>
+
+
+ <!-- ✅ スマホ用メニュー -->
+  <nav class="nav-menu">
+    <a href="../concept/index.html" class="nav_btn">Concept</a>
+    <a href="../drink/index.html" class="nav_btn">Drink</a>
+    <a href="../food/index.html" class="nav_btn">Food</a>
+    <a href="../faq/index.html" class="nav_btn">FAQ</a>
+    <a href="../access/index.html" class="nav_btn">Access</a>
+  </nav>
+</header>
+<main class="access">
+<!-- アクセス→ファーストビュー -->
+<section class="first">
+    <div class="w1200">
+        <h2>Access</h2>
+        <p class="sub">気分で選べる、ふたつの街</p>
+        <p class="ac-sub">音楽とカルチャーがにぎわう下北沢と、ゆるくてあたたかい高円寺
+<br>どちらも、めっちゃこだわってます！</p>
+    </div>
+
+</section>
+
+<!-- アクセス→ショップ -->
+<section class="ac-shop">
+
+<div class="ac-shop-all">
+
+  <!-- ショップ→下北沢 -->
+  <a href="#map-shimokita" class="ac-shop-box01">
+    <div class="ac-shop-shimo">
+      <p class="ac-huki-tx01">駅近で寄り道にぴったり</p>
+      <img class="ac-shop-ph" src="../img/ac-shop01.png" alt="下北沢店">
+      <p class="ac-shop-name">#下北沢店</p>
+    </div>
+  </a>
+
+  <!-- ショップ→高円寺 -->
+  <a href="#map-koenji" class="ac-shop-box02">
+    <div class="ac-shop-koen">
+      <p class="ac-huki-tx02">テラス席で楽しむ開放的な夜</p>
+      <img class="ac-shop-ph" src="../img/ac-shop02.png" alt="高円寺店">
+      <p class="ac-shop-name">#高円寺店</p>
+    </div>
+  </a>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- アクセス→どっちに行く？ -->
+<section class="ac-choose">
+
+  <div class="ac-choose-inner">
+
+    <!-- 左の矢印 -->
+    <img class="ac-choose-arrow right" src="../img/ac-yajirushi.png" alt="arrow">
+   
+
+    <!-- くるくる回る円形テキスト -->
+    <div class="ac-circle-wrap">
+      <img class="ac-circle" src="../img/ac-Which place.png" alt="circle text">
+      <img class="ac-kanpai" src="../img/ac-kanpai.png" alt="kanpai">
+    </div>
+
+    <!-- 右の矢印 -->
+    <img class="ac-choose-arrow left" src="../img/ac-yajirushi.png" alt="arrow">
+
+  </div>
+
+</section>
+
+
+<!-- アクセス→下北沢店 -->
+<section class="ac-shop01" id="map-shimokita">
+  <div class="w1200">
+    <h2>Shimokita Yoi</h2>
+    <p class="sub">YOI下北沢店</p>
+  </div>
+
+<!-- アクセス → Googleマップ -->
+<div class="ac-map">
+  <div class="w1200">
+    <div class="ac-map-card01">
+
+      <!-- ピンアイコン（カードの上に重ねる） -->
+      <img class="ac-map-pin" src="../img/ac-mapmk-01.png" alt="YOIマップ">
+
+      <!-- カードの中身 -->
+      <div class="ac-map-inner">
+        <!-- Googleマップ埋め込みエリア -->
+        <div class="ac-map-embed">
+          <!-- ▼ここの src を実際の Google マップ埋め込みURLに差し替える -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6260139449996!2d139.66431687633315!3d35.66158477259358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f36b9a296133%3A0x66c43a9f356d5e5d!2z5LiL5YyX5rKi6aeF!5e0!3m2!1sja!2sjp!4v1763434758237!5m2!1sja!2sjp" width="400" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- 住所などのテキスト -->
+        <div class="ac-map-info">
+
+          <p class="ac-map-text">
+            住所：東京都世田谷区北沢〇丁目〇−〇<br>
+            アクセス：下北沢駅 東口より徒歩3分<br>
+            営業時間：17:00〜24:00（L.O. 23:30）<br>
+            定休日：火曜日<br>
+            電話番号：03-xxxx-xxxx
+          </p>
+        </div>
+      </div>
+
+      <div class="ac-badge">
+  <img src="../img/ac-badge01.png" alt="badge">
+  <p><span class="ac-bg-blue">行き方のヒント</span><br>東口を出て<br>右手の道意識！の<br>抜けてすぐ</p>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+<!-- アクセス→高円寺店 -->
+<section class="ac-shop02" id="map-koenji">
+    <div class="w1200">
+        <h2>Koenji Yoi</h2>
+        <p class="sub">YOI高円寺店</p>
+    </div>
+
+<!-- アクセス → Googleマップ -->
+<div class="ac-map">
+  <div class="w1200">
+    <div class="ac-map-card02">
+
+      <!-- ピンアイコン（カードの上に重ねる） -->
+      <img class="ac-map-pin" src="../img/ac-mapmk-02.png" alt="YOIマップ">
+
+      <!-- カードの中身 -->
+      <div class="ac-map-inner">
+        <!-- Googleマップ埋め込みエリア -->
+        <div class="ac-map-embed">
+          <!-- ▼ここの src を実際の Google マップ埋め込みURLに差し替える -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.8490841152384!2d139.64723001189773!3d35.70533122246517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f27d700b2bdd%3A0xe2ef354e915f9930!2z6auY5YaG5a-66aeF!5e0!3m2!1sja!2sjp!4v1763434838862!5m2!1sja!2sjp" width="400" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- 住所などのテキスト -->
+        <div class="ac-map-info">
+
+          <p class="ac-map-text">
+        住所：東京都杉並区高円寺南○丁目○-○<br>
+        アクセス：高円寺駅 北口より徒歩5分<br>
+        営業時間：16:00〜23:00（L.O.22:30）<br>
+        定休日：月曜日<br>
+        電話番号：03-xxxx-xxxx
+          </p>
+        </div>
+      </div>
+
+      <div class="ac-badge">
+  <img src="../img/ac-badge02.png" alt="badge">
+  <p><span class="ac-bg-pink">行き方のヒント</span><br>純情商店街を<br>まっすぐ進んで<br>3軒目の角を左</p>
+</div>
+
+    </div>
+  </div>
+</div>
+
+</section>
+</main>
+
+<!-- 下層ページ→フッター -->
+<footer>
+    <nav>
+        <ul>
+            <a href="../concept/index.html"><li>Concept</li></a>
+            <a href="../food/index.html"><li>Food</li></a>
+            <a href="../drink/index.html"><li>Drink</li></a>
+            <a href="../event/index.html"><li>Event</li></a>
+            <a href="../access/index.html"><li>Access</li></a>
+            <a href="../faq/index.html"><li>FAQ</li></a>
+        </ul>
+    </nav>
+    <div>
+        <a href="../index.html"><img src="../img/to_footer_logo.png" alt="YOIのロゴ" width="153" height="112"></a>
+    </div>
+    <p>🄫2025YOI</p>
+    <div class="sns">
+        <a href="#"><img src="../img/to_footer_insta.png" alt="Instagramのロゴ" width="41" height="41"></a>
+        <a href="#"><img src="../img/to_footer_tiktok.png" alt="TikTokのロゴ" width="65" height="65"></a>
+    </div>
+</footer>
+
+<!-- Javaスクリプト-->
+<script src="../js/hamburger.js"></script>
+</body>
+
+</html>

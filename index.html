@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta charset="utf-8">
+<title>TOP｜YOI</title>
+<link href="css/reset.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<!-- Googleフォント（Zen Kaku Gothic NewとCaveat） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Googleフォント（DotGothic16） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+<!-- ビューポート -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--jQuery本体-->
+<script src="js/jquery-1.11.2.min.js"></script>
+
+<!--ready関数-->
+<script>
+$(function(){
+
+});
+</script>
+
+</head>
+
+<body>
+
+<!-- ローディング画面 -->
+<div id="loading">
+  <!-- 泡 -->
+  <div class="bubbles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- ロゴ -->
+  <img src="img/fv-logo.png" class="loading-logo">
+</div>
+
+
+  <!-- 本文（いつもの内容） -->
+  <div id="wrapper">
+
+
+<!-- TOP→ヘッダー -->
+<header>
+  <a href="index.html"><img class="he-logo" src="img/fv-YOIlogo.png" alt="YOIロゴ" width="100" height="auto"></a>  
+  
+  <nav class="header__nav">
+    <ul>
+      <a class="nav_btn" href="concept/index.html"><li>Concept</li></a>
+      <a class="nav_btn" href="drink/index.html"><li>Drink</li></a>
+      <a class="nav_btn" href="food/index.html"><li>Food</li></a>
+      <a class="nav_btn" href="faq/index.html"><li>FAQ</li></a>
+      <a class="nav_btn" href="access/index.html"><li>Access</li></a>
+    </ul>
+  </nav>
+
+  <!-- ✅ ハンバーガーアイコン（SPで表示） -->
+<button class="nav-toggle" aria-label="メニュー">
+  <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--mid"></span>
+  <span class="nav-toggle__bar nav-toggle__bar--bot"></span>
+</button>
+
+
+  <!-- ✅ スマホ用メニュー -->
+  <nav class="nav-menu">
+    <a href="concept/index.html" class="nav_btn">Concept</a>
+    <a href="drink/index.html" class="nav_btn">Drink</a>
+    <a href="food/index.html" class="nav_btn">Food</a>
+    <a href="faq/index.html" class="nav_btn">FAQ</a>
+    <a href="access/index.html" class="nav_btn">Access</a>
+  </nav>
+</header>
+
+
+<main class="top">
+<!-- TOP→ファーストビュー -->
+<!-- FV -->
+<div class="fv" aria-label="YOI ヒーロー">
+  <img class="fv__bg" src="img/fv-bg.png" alt="" />
+
+
+<div class="fv__kirakira fv__kirakira--01">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+<div class="fv__kirakira fv__kirakira--02">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+<div class="fv__kirakira fv__kirakira--03">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+<div class="fv__kirakira fv__kirakira--04">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+
+<div class="fv__kirakira fv__kirakira--05">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+
+<div class="fv__kirakira fv__kirakira--06">
+  <img src="img/fv_kirakira.png" alt="">
+</div>
+
+
+
+  <!-- 飾り（上のガーランド等があれば） -->
+  <img class="fv__bunting" src="img/fv-noren.png" alt="のれん"/>
+
+  <!-- ロゴなど -->
+  <img class="fv__mark" src="img/fv-logo.png" alt="ヨイイザカヤ YOI" />
+
+  <!-- 缶（左＝kan01、右＝kan02） -->
+  <img class="fv__can fv__can--left"  src="img/fv-kan01.png" alt="BLUE HAWAII 缶" />
+  <img class="fv__can fv__can--right" src="img/fv-kan02.png" alt="STRAWBERRY SOUR 缶" />
+
+  <!-- きらきら -->
+  <img class="fv__spark fv__spark--1" src="img/fv-kirakira01.png" alt="" aria-hidden="true" />
+  <img class="fv__spark fv__spark--2" src="img/fv-kirakira02.png" alt="" aria-hidden="true" />
+  
+  <!-- 乾杯の吹き出し -->
+  <img class="fv__cheers" src="img/fv-hukidashi.png" alt="乾杯の吹き出し">
+
+  <!-- くるくるCTA（画像を背景にしてテキストはHTMLで） -->
+  <a class="fv__cta" href="index.html#to_shindan" aria-label="いまスグ ドリンク診断してみる！">
+    <h3>いまスグ<br><span class="pnk">ドリンク診断</span><br>してみる！</h3>
+  </a>
+
+</div>
+
+
+
+
+<div class="fv__belt">
+<div class="fv__belt-inner">
+<h3>YOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOI</h3>
+
+
+</div>
+<div class="fv__belt-inner" aria-hidden="true">
+<h3>YOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOI</h3>
+
+</div>
+</div>
+
+<!-- TOP→コンセプト -->
+<section class="concept">
+    <div class="w1200">
+        <h2>Concept</h2>
+        <p class="sub">良い時間を、酔い気分で、宵のうちに。</p>
+        <p class="txt">YOIは、“かわいい×おしゃれ×ちょっと特別”をテーマにした新感覚の居酒屋です。
+        <br>デザインのかわいいお酒や小皿料理を並べて、写真を撮ったり、語り合ったり。
+        <br>誰と来ても心地よく過ごせる、そんな“ネオ居酒屋”の夜をお届けします。</p>
+        <a href="concept/index.html"><p class="btn">もっとみる　<span class="btn-icon">→</span></p></a>
+        <!-- イラストここから -->
+        <div class="cheers">
+            <img src="img/to_illust1.png" class="left" alt="" width="70" height="157">
+            <img src="img/to_illust2.png" class="right" alt="" width="76" height="111">
+        </div>
+        <img src="img/to_illust3.png" class="under" alt="" width="81" height="125">
+        <!-- イラストここまで -->
+    </div>
+</section>
+
+<div class="fv__belt">
+<div class="fv__belt-inner">
+<h3>YOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOI</h3>
+
+
+</div>
+<div class="fv__belt-inner" aria-hidden="true">
+<h3>YOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOIYOI</h3>
+
+</div>
+</div>
+
+<!-- TOP→フード -->
+<section class="food">
+    <div class="w1200">
+        <h2>Food</h2>
+        <p class="sub">“YOI”のお料理について</p>
+        <div class="insta">
+            <div class="left">
+                <img src="img/to_food.png" alt="ご飯とお酒が机に置いてある" width="496" height="496">
+            </div>
+            <div class="right">
+                <div class="name">
+                    <img src="img/to_insta_logo.png" alt="" width="60" height="60">
+                    <p>yoi_izakaya</p>
+                </div>
+                <p>かわいい缶に、ちょこっと小皿。
+                <br>今日の“YOI”はこれで決まり！
+                <br><br>お気に入りの小皿を選んで、自分だけのプレートが作れます。飲む人も飲まない人も、特別な夜をお楽しみください。</p>
+                <div class="logo">
+                    <div>
+                        <img src="img/to_insta1.png" alt="" width="36" height="30">
+                        <img src="img/to_insta2.png" alt="" width="38" height="30">
+                        <img src="img/to_insta3.png" alt="" width="33" height="30">
+                    </div>
+                    <div>
+                        <img src="img/to_insta4.png" alt="" width="22" height="26">
+                    </div>
+                </div>
+                <a href="food/index.html"><p class="btn">もっとみる　<span class="btn-icon">→</span></p></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TOP→ドリンク -->
+<section class="drink" id="to_shindan">
+    <img src="img/to_wave1.png" class="wave1" alt="" width="1200" height="35">
+    <div class="w1200">
+        <h2>FlavorMap</h2>
+        <p class="sub">あなたにぴったりなお酒診断！</p>
+        <!-- フレーバー診断ここから -->
+        <div class="flavor">
+            <div class="box">
+                <h3>あなたの好みの味は？</h3>
+                <input type="radio" name="flavor" id="f1" checked>
+                <input type="radio" name="flavor" id="f2">
+                <input type="radio" name="flavor" id="f3">
+                <input type="radio" name="flavor" id="f4">
+                <div class="options">
+                    <label for="f1">あまかわフルーツ</label>
+                    <label for="f2">すっきり爽やか</label>
+                    <label for="f3">オトナほろ苦</label>
+                    <label for="f4">まったりスイート</label>
+                </div>
+            </div>
+            <div class="image">
+                <img src="img/to_drink1.png" class="img1" alt="" width="450" height="350">
+                <img src="img/to_drink2.png" class="img2" alt="" width="450" height="350">
+                <img src="img/to_drink3.png" class="img3" alt="" width="450" height="350">
+                <img src="img/to_drink4.png" class="img4" alt="" width="450" height="350">
+            </div>
+        </div>
+        <!-- フレーバー診断ここまで -->
+        <a href="drink/index.html#flavor"><p class="btn">全フレーバーをみる　<span class="btn-icon">→</span></p></a>
+    </div>
+    <img src="img/to_wave2.png" class="wave2" alt="" width="1200" height="35">
+</section>
+
+<!-- TOP→イベント -->
+<section class="event">
+    <div class="w1200">
+        <!-- 電光掲示板ここから -->
+        <div class="board-wrap">
+            <div class="bar left"></div>
+            <div class="bar right"></div>
+            <div class="board">
+                <div class="panel">
+                    <div class="marquee">
+                        <span class="text">本日よりクリスマスイベントスタート！</span>
+                        <span class="text">本日よりクリスマスイベントスタート！</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 電光掲示板ここまで -->
+        <h2>Event</h2>
+        <p class="sub">夜は、もっと遊べる</p>
+        <p class="txt">“YOI”では、お客さまが良い夜を楽しめるようなとっておきの企画をたくさん
+        <br>ご用意しています。気になるイベントを、ぜひチェックしてみてください。</p>
+        <!-- スライダーここから -->
+        <div class="eventbox">
+            <div class="slider">
+                <div class="slide">
+                    <p class="top">毎月第3金曜日</p>
+                    <img src="img/to_tasting.png" alt="試飲会に参加する女性たち" width="270" height="290">
+                    <a href="event/index.html#dr_shi"><h3>スペシャル試飲会</h3>
+                    <p class="under">気になるあのお酒、
+                    <br>気軽にお試しできちゃいます</p></a>
+                </div>
+                <div class="slide">
+                    <p class="top">11/18~12/25</p>
+                    <img src="img/to_xmas.png" alt="赤い服を着た女性たち" width="270" height="290">
+                    <a href="event/index.html#dr_xmas"><h3>クリスマスイベント</h3>
+                    <p class="under">赤や緑の服でご来店すると
+                    <br>何かいいこと起きるかも！</p></a>
+                </div>
+                <div class="slide">
+                    <p class="top">毎日開催！</p>
+                    <img src="img/to_gatya.png" alt="ガチャガチャの機械" width="270" height="290">
+                    <a href="event/index.html#dr_gatya"><h3>無料ガチャガチャ</h3>
+                    <p class="under">お客様全員1回無料！
+                    <br>YOIで運試ししてみませんか？</p></a>
+                </div>
+            </div>
+            <button class="prev">‹</button>
+            <button class="next">›</button>
+        </div>
+        <!-- スライダーここまで -->
+    </div>
+    <img src="img/to_kirakira1.png" class="kira1" alt="" width="149" height="95">
+    <img src="img/to_kirakira2.png" class="kira2" alt="" width="90" height="98">
+    <img src="img/to_wave4.png" class="wave4" alt="" width="1200" height="35">
+</section>
+</section>
+
+<!-- TOP→アクセス -->
+<section class="access">
+    <div class="w1200">
+        <h2>Access</h2>
+        <p class="sub">気分で選べる、ふたつの街</p>
+        <div class="box">
+            <a href="access/index.html#map-shimokita"><div>
+                <div class="bigbox">
+                    <img src="img/to_ac_shimokita.png" alt="下北沢店の外観" width="400" height="300">
+                </div>
+                <p class="tag">#下北沢店</p>
+                <p class="txt1">駅近で寄り道にぴったり</p>
+            </div></a>
+            <a href="access/index.html#map-koenji"><div>
+                <div class="bigbox">
+                    <img src="img/to_ac_koenji.png" alt="高円寺店の外観" width="400" height="300">
+                </div>
+                <p class="tag">#高円寺店</p>
+                <p class="txt2">テラス席で楽しむ開放的な夜</p>
+            </div></a>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- TOP→フッター -->
+<footer>
+    <nav>
+        <ul>
+            <a href="concept/index.html"><li>Concept</li></a>
+            <a href="food/index.html"><li>Food</li></a>
+            <a href="drink/index.html"><li>Drink</li></a>
+            <a href="event/index.html"><li>Event</li></a>
+            <a href="access/index.html"><li>Access</li></a>
+            <a href="faq/index.html"><li>FAQ</li></a>
+        </ul>
+    </nav>
+    <div>
+        <a href="index.html"><img src="img/to_footer_logo.png" alt="YOIのロゴ" width="153" height="112"></a>
+    </div>
+    <p>🄫2025YOI</p>
+    <div class="sns">
+        <a href="#"><img src="img/to_footer_insta.png" alt="Instagramのロゴ" width="41" height="41"></a>
+        <a href="#"><img src="img/to_footer_tiktok.png" alt="TikTokのロゴ" width="65" height="65"></a>
+    </div>
+</footer>
+
+ </div>
+
+<!-- ドリンク診断用JS -->
+<script>
+const radios = document.querySelectorAll('input[name="flavor"]');
+const images = document.querySelectorAll('.image img');
+const labels = document.querySelectorAll('.options label');
+radios.forEach((radio, index) => {
+  radio.addEventListener('change', () => {
+    images.forEach(img => img.style.opacity = 0);
+    images[index].style.opacity = 1;
+    labels.forEach(label => label.classList.remove('active'));
+    labels[index].classList.add('active');
+  });
+});
+images.forEach(img => img.style.opacity = 0);
+images[0].style.opacity = 1;  
+labels.forEach(label => label.classList.remove('active'));
+labels[0].classList.add('active'); 
+</script>
+
+<!-- イベントスライダー用JS -->
+<script>
+const slides = document.querySelectorAll('.slide');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+let order = ['left', 'center', 'right']; 
+function updateSlides() {
+  slides.forEach((slide, index) => {
+    slide.classList.remove('left','center','right');
+    slide.classList.add(order[index]);
+  });
+}
+next.addEventListener('click', () => {
+  order.unshift(order.pop());
+  updateSlides();
+});
+prev.addEventListener('click', () => {
+  order.push(order.shift()); 
+  updateSlides();
+});
+slides.forEach((slide, clickedIndex) => {
+  slide.addEventListener('click', () => {
+    const centerIndex = order.indexOf('center');
+    if (clickedIndex === centerIndex) return; 
+    const moves = clickedIndex - centerIndex;
+    if (moves > 0) {
+      for (let i = 0; i < moves; i++) order.unshift(order.pop());
+    } else {
+      for (let i = 0; i < Math.abs(moves); i++) order.push(order.shift());
+    }
+    updateSlides();
+  });
+});
+updateSlides();
+</script>
+
+<script src="js/cheers.js"></script>
+<script src="js/hamburger.js"></script>
+<script src="js/start.js"></script>
+
+</body>
+
+</html>
